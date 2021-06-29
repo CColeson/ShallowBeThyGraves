@@ -1,0 +1,73 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/Tilesets/0x72_16x16DungeonTileset.v4.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Torch.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 112, 150, 16, 25 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 128, 150, 16, 25 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 144, 150, 16, 25 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 160, 150, 16, 25 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 176, 150, 16, 25 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 192, 150, 16, 25 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 1 )
+region = Rect2( 208, 150, 16, 25 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 1 )
+region = Rect2( 224, 150, 16, 25 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 240, 150, 16, 25 )
+
+[sub_resource type="SpriteFrames" id=10]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 4, 2 )
+
+[sub_resource type="CircleShape2D" id=12]
+radius = 34.0147
+
+[node name="Torch" type="StaticBody2D"]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 10 )
+shape = SubResource( 11 )
+
+[node name="PlayerInteractableArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerInteractableArea"]
+position = Vector2( 0, 4 )
+shape = SubResource( 12 )
+
+[connection signal="body_entered" from="PlayerInteractableArea" to="." method="_on_PlayerInteractableArea_body_entered"]
+[connection signal="body_exited" from="PlayerInteractableArea" to="." method="_on_PlayerInteractableArea_body_exited"]

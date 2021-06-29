@@ -1,0 +1,245 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/Tilesets/0x72_16x16DungeonTileset.v4.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Tilesets/0x72_DungeonTilesetII_v1.4.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 5.13311, 2 )
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "original_state"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "walk"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "walk_transition"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=5]
+states/original_state/node = SubResource( 2 )
+states/original_state/position = Vector2( 564, 170 )
+states/walk/node = SubResource( 3 )
+states/walk/position = Vector2( 991, 170 )
+states/walk_transition/node = SubResource( 9 )
+states/walk_transition/position = Vector2( 788, 170 )
+transitions = [ "original_state", "walk_transition", SubResource( 13 ), "walk_transition", "walk", SubResource( 14 ) ]
+start_node = "original_state"
+graph_offset = Vector2( 39, 79 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=6]
+
+[sub_resource type="Animation" id=7]
+length = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/Body:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics/Body:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Graphics/Body:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Graphics/Sword:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 10.2919, 0.314978 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Graphics/Sword:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 42.9544 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Graphics:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Graphics:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "walk"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/Sword:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 25.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics/Sword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 7, 1 ), Vector2( 7, 0 ), Vector2( 7, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Graphics/Body:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, -5.0, 5.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "walk_transition"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/Sword:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 42.9544, 25.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics/Sword:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 10.2919, 0.314978 ), Vector2( 7, 1 ) ]
+}
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.526554, 8.0295 )
+shape = SubResource( 1 )
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite" parent="Graphics"]
+z_index = 1
+z_as_relative = false
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 208, 236, 15, 20.2274 )
+
+[node name="Sword" type="Sprite" parent="Graphics"]
+position = Vector2( 10.2919, 0.314978 )
+rotation = 0.749696
+scale = Vector2( 0.75, 0.75 )
+z_as_relative = false
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 195, 39, 10, 24 )
+
+[node name="SpellCaster" type="Sprite" parent="Graphics"]
+visible = false
+position = Vector2( 6, -1.19209e-07 )
+rotation = 0.341246
+scale = Vector2( 0.7, 0.7 )
+z_as_relative = false
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 340, 145, 8, 30 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 5 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/original_state = SubResource( 7 )
+anims/walk = SubResource( 8 )
+anims/walk_transition = SubResource( 12 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
