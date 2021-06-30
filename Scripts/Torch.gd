@@ -1,15 +1,17 @@
 extends StaticBody2D
 
-onready var area = $PlayerInteractableArea
+export var usableDistance = 30
+var usableMessage = "Press E to light the torch"
+export var is_usable = true
 
+func _ready():
+	$AnimatedSprite.play("default")
+	$AnimatedSprite.frame = 0
+	$AnimatedSprite.stop()
+	$Light2D.enabled = false
+	$Light2D.color = get_node("/root/Global").light_color
 
-func _on_PlayerInteractableArea_body_entered(body):
-	if body.name == "Player": 
-		body.promptUse("Press E to light the torch", self)
-
-
-
-
-func _on_PlayerInteractableArea_body_exited(body):
-	if body.name == "Player":
-		body.closeUsePrompt()
+func use():
+	$AnimatedSprite.play("used")
+	$Light2D.enabled = true
+	is_usable = false
