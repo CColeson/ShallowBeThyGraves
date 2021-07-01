@@ -13,6 +13,7 @@ onready var animator = $AnimationTree
 onready var actionUI = $UI
 onready var actionLabel = $UI/Label
 var usable_object = null
+var attackDamage = 50 #TODO getter that multiplies by a skill
 
 func _ready():
 	animator.active = true

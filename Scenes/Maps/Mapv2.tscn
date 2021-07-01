@@ -349,46 +349,6 @@ __meta__ = {
 position = Vector2( 224, 57 )
 z_index = 1
 
-[node name="Torch2" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 224, 70 )
-z_index = 1
-
-[node name="Torch3" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 225, 80 )
-z_index = 1
-
-[node name="Torch4" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 225, 93 )
-z_index = 1
-
-[node name="Torch5" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 225, 106 )
-z_index = 1
-
-[node name="Torch6" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 226, 117 )
-z_index = 1
-
-[node name="Torch7" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 225, 127 )
-z_index = 1
-
-[node name="Torch8" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 225, 136 )
-z_index = 1
-
-[node name="Torch9" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 225, 146 )
-z_index = 1
-
-[node name="Torch10" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 224, 158 )
-z_index = 1
-
-[node name="Torch11" parent="YSort" instance=ExtResource( 4 )]
-position = Vector2( 226, 168 )
-z_index = 1
-
 [node name="Enemy" parent="YSort" instance=ExtResource( 5 )]
 position = Vector2( 269, 78 )
 z_index = 1
