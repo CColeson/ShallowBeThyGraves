@@ -6,7 +6,7 @@ var HP = 150
 enum States {DEFAULT, DAMAGED}
 var state = States.DEFAULT
 var attacker_position = null
-const DAMAGE_SPEED = 500
+const DAMAGE_SPEED = 350
 const DAMAGE_DISTANCE = 25 #Distance to travel after being damaged
 var damaged_position = null # our position before taking damage
 
@@ -17,21 +17,21 @@ func _physics_process(delta):
 			var nav = get_tree().get_root().find_node("Navigation2D", true, false)
 			var player = get_tree().get_root().find_node("Player", true, false)
 			path = nav.get_simple_path(global_position, player.global_position)
-			move_along_path(move_distance)
+			#move_along_path(move_distance)
 		States.DAMAGED:
 			if damaged_position != null:
-				if position.distance_to(damaged_position) < DAMAGE_DISTANCE:
-					var direction = position.angle_to(attacker_position) 
+				if position.distance_to(damaged_position) < DAMAGE_DISTANCE and $DamagedTimer.time_left > 0:
+					var direction = position.angle_to_point(attacker_position)
 					var y = DAMAGE_SPEED * sin(direction)
 					var x = DAMAGE_SPEED * cos(direction)
 					var velocity = Vector2(x, y)
 					move_and_slide(velocity)
-			else:
-				state = States.DEFAULT
+				else:
+					state = States.DEFAULT
 
 func move_along_path(distance):
 	var start_point := position
-	for i in range(path.size()):
+	for _i in range(path.size()):
 		var distance_to_next : = start_point.distance_to(path[0])
 		if distance <= distance_to_next and distance >= 0:
 			position = start_point.linear_interpolate(path[0], distance / distance_to_next)
@@ -51,6 +51,7 @@ func take_damage(attacker):
 		attacker_position = attacker.position
 		damaged_position = position
 		state = States.DAMAGED
+		$DamagedTimer.start()
 		if HP <= 0:
 			queue_free()
 

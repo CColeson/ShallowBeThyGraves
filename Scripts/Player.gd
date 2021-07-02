@@ -1,6 +1,9 @@
 extends KinematicBody2D
 
-var move_speed = 100
+var move_speed = 80
+var roll_speed = 140
+var roll_stamina_cost = 20
+var attack_stamina_cost = 10
 var facing_right = true
 var attributes = {
 	"vitality" : 1,
@@ -14,19 +17,26 @@ onready var actionUI = $UI
 onready var actionLabel = $UI/Label
 var usable_object = null
 var attackDamage = 50 #TODO getter that multiplies by a skill
+var health = 100 #TODO getter that multiplies by a skill
+var stamina = 50 #TODO getter that multiplies by a skill
+var stamina_regen_rate = 30#TODO regen that shit somehow
+var velocity := Vector2()
+
 
 func _ready():
 	animator.active = true
 	$Graphics/SpellCaster.hide()
 	play_animation("original_state")
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	match state:
 		States.DEFAULT : state_default()
 		States.ATTACKING : state_attacking()
+		States.ROLLING : state_rolling()
 
 func state_default():
-	var velocity = Vector2()
+	stamina = 50 #TODO: get rid of this, make stamina regeneration
+	velocity = Vector2()
 	if Input.is_action_pressed("up"):
 		velocity.y = -1
 	if Input.is_action_pressed("down"):
@@ -43,30 +53,38 @@ func state_default():
 	else:
 		play_animation("original_state")
 	
-#	if Input.is_action_just_pressed("roll") and velocity != Vector2.ZERO:
-#		state = States.ROLLING
-		
-	if Input.is_action_just_pressed("attack"):
+	#These two conditionals must be after velocity is determined
+	if (Input.is_action_just_pressed("roll") and velocity != Vector2.ZERO  and stamina - roll_stamina_cost >= 0):
+		stamina -= roll_stamina_cost
+		state = States.ROLLING
+	if Input.is_action_just_pressed("attack") and stamina - attack_stamina_cost >= 0:
+		stamina -= attack_stamina_cost
 		state = States.ATTACKING
 	
-	if usable_object != null:
-		actionLabel.text = usable_object.usableMessage
-		if Input.is_action_just_pressed("use"):
-			usable_object.use()
-			usable_object = null
-			actionLabel.text = ""
-	
+	check_usables()
 	move_and_slide(velocity)
 
 func state_attacking():
-	play_animation("attack_right")
-	var bodiesInArea = $SideMeleeDamageArea.get_overlapping_bodies()
-	if !bodiesInArea.empty(): #this could be handled with signals,
-		for body in bodiesInArea:#but fuck me do I hate having that many funcs
-			if body.has_method("take_damage"):
-				body.take_damage(self) 
+	var animation = "attack_right"
+	var hitbox = $SideMeleeDamageArea
+	if velocity.y < 0:
+		animation = "attack_up"
+		hitbox = $TopMeleeDamageArea
+	elif velocity.y > 0:
+		animation = "attack_down"
+		hitbox = $BottomMeleeDamageArea
 		
-		
+	play_animation(animation)
+	var areas_in_area = hitbox.get_overlapping_areas()
+	if !areas_in_area.empty(): #this could be handled with signals,
+		for area in areas_in_area:#but fuck me do I hate having that many funcs
+			var parent = area.get_parent()
+			if parent.has_method("take_damage"):
+				parent.take_damage(self)
+
+func state_rolling():
+	play_animation("roll")
+	move_and_slide(velocity.normalized() * roll_speed)
 
 func flip_if_needed(vec):
 	#why does this function feel so dirty
@@ -96,4 +114,16 @@ func _on_UsableRange_body_exited(body):
 
 func _on_attack_animation_finish():
 	if state == States.ATTACKING:
+		state = States.DEFAULT
+
+func check_usables():
+	if usable_object != null:
+		actionLabel.text = usable_object.usableMessage
+		if Input.is_action_just_pressed("use"):
+			usable_object.use()
+			usable_object = null
+			actionLabel.text = ""
+
+func _on_roll_animation_finish():
+	if state == States.ROLLING:
 		state = States.DEFAULT
