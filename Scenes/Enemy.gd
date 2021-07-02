@@ -17,7 +17,7 @@ func _physics_process(delta):
 			var nav = get_tree().get_root().find_node("Navigation2D", true, false)
 			var player = get_tree().get_root().find_node("Player", true, false)
 			path = nav.get_simple_path(global_position, player.global_position)
-			#move_along_path(move_distance)
+			#move_along_path(move_distance) #TODO UNCOMMENT THIS
 		States.DAMAGED:
 			if damaged_position != null:
 				if position.distance_to(damaged_position) < DAMAGE_DISTANCE and $DamagedTimer.time_left > 0:
@@ -30,6 +30,7 @@ func _physics_process(delta):
 					state = States.DEFAULT
 
 func move_along_path(distance):
+	#TODO: Add collisions to this if time permits
 	var start_point := position
 	for _i in range(path.size()):
 		var distance_to_next : = start_point.distance_to(path[0])

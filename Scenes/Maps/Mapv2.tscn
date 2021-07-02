@@ -383,7 +383,7 @@ __meta__ = {
 [node name="LabelStamina" type="Label" parent="UI"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -109.0
+margin_left = -29.0
 margin_top = 16.0
 margin_bottom = 30.0
 grow_horizontal = 0
