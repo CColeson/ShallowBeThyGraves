@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+#meme man u suck
 var move_speed = 80
 var roll_speed = 140
 var roll_stamina_cost = 20
