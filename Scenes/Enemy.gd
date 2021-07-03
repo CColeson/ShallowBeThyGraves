@@ -9,6 +9,7 @@ var attacker_position = null
 const DAMAGE_SPEED = 350
 const DAMAGE_DISTANCE = 25 #Distance to travel after being damaged
 var damaged_position = null # our position before taking damage
+var experience_points = 
 
 func _physics_process(delta):
 	match state:
@@ -54,6 +55,7 @@ func take_damage(attacker):
 		state = States.DAMAGED
 		$DamagedTimer.start()
 		if HP <= 0:
+			
 			queue_free()
 
 func set_path(value):

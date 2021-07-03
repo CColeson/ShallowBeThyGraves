@@ -8,7 +8,7 @@
 [ext_resource path="res://Scripts/Mapv2.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Pillar.tscn" type="PackedScene" id=7]
 
-[sub_resource type="NavigationPolygon" id=9]
+[sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 23, 258, 23, 34, 215, 34, 215, 194, 311, 258, 247, 194, 311, 34, 247, 34 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5 ), PoolIntArray( 6, 4, 5, 7 ) ]
 outlines = [ PoolVector2Array( 23, 34, 215, 34, 215, 194, 247, 194, 247, 34, 311, 34, 311, 258, 23, 258 ) ]
@@ -130,7 +130,7 @@ __meta__ = {
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 position = Vector2( -4, -2 )
-navpoly = SubResource( 9 )
+navpoly = SubResource( 1 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 

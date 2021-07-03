@@ -7,90 +7,89 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.13311, 2 )
 
-[sub_resource type="AnimationNodeAnimation" id=23]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "attack_down"
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "attack_right"
 
-[sub_resource type="AnimationNodeAnimation" id=24]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "attack_up"
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "original_state"
 
-[sub_resource type="AnimationNodeAnimation" id=32]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "roll"
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "walk"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "walk_transition"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=9]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=27]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+[sub_resource type="AnimationNodeStateMachineTransition" id=11]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=14]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
 
-[sub_resource type="AnimationNodeStateMachine" id=10]
-states/attack_down/node = SubResource( 23 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachine" id=25]
+states/attack_down/node = SubResource( 2 )
 states/attack_down/position = Vector2( 153.385, 365 )
-states/attack_right/node = SubResource( 2 )
+states/attack_right/node = SubResource( 3 )
 states/attack_right/position = Vector2( 153.385, 184 )
-states/attack_up/node = SubResource( 24 )
+states/attack_up/node = SubResource( 4 )
 states/attack_up/position = Vector2( 153.385, 275 )
-states/original_state/node = SubResource( 3 )
+states/original_state/node = SubResource( 5 )
 states/original_state/position = Vector2( 153.385, 26 )
-states/roll/node = SubResource( 32 )
+states/roll/node = SubResource( 6 )
 states/roll/position = Vector2( 564, 26 )
-states/walk/node = SubResource( 4 )
+states/walk/node = SubResource( 7 )
 states/walk/position = Vector2( 564, 330 )
-states/walk_transition/node = SubResource( 5 )
+states/walk_transition/node = SubResource( 8 )
 states/walk_transition/position = Vector2( 564, 138 )
-transitions = [ "original_state", "walk_transition", SubResource( 6 ), "walk_transition", "walk", SubResource( 7 ), "walk", "attack_right", SubResource( 8 ), "original_state", "attack_right", SubResource( 9 ), "walk", "attack_up", SubResource( 25 ), "walk", "attack_down", SubResource( 26 ), "attack_right", "attack_up", SubResource( 27 ), "attack_up", "attack_right", SubResource( 28 ), "attack_up", "attack_down", SubResource( 29 ), "attack_down", "attack_up", SubResource( 30 ), "original_state", "roll", SubResource( 33 ), "roll", "original_state", SubResource( 34 ), "walk_transition", "attack_right", SubResource( 35 ), "walk_transition", "attack_up", SubResource( 36 ), "walk_transition", "attack_down", SubResource( 37 ), "walk", "original_state", SubResource( 38 ) ]
+transitions = [ "original_state", "walk_transition", SubResource( 9 ), "walk_transition", "walk", SubResource( 10 ), "walk", "attack_right", SubResource( 11 ), "original_state", "attack_right", SubResource( 12 ), "walk", "attack_up", SubResource( 13 ), "walk", "attack_down", SubResource( 14 ), "attack_right", "attack_up", SubResource( 15 ), "attack_up", "attack_right", SubResource( 16 ), "attack_up", "attack_down", SubResource( 17 ), "attack_down", "attack_up", SubResource( 18 ), "original_state", "roll", SubResource( 19 ), "roll", "original_state", SubResource( 20 ), "walk_transition", "attack_right", SubResource( 21 ), "walk_transition", "attack_up", SubResource( 22 ), "walk_transition", "attack_down", SubResource( 23 ), "walk", "original_state", SubResource( 24 ) ]
 start_node = "original_state"
 graph_offset = Vector2( -110.88, -11.3575 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=26]
 
-[sub_resource type="Animation" id=22]
-resource_name = "attack_down"
+[sub_resource type="Animation" id=27]
 length = 0.15
 step = 0.01
 tracks/0/type = "value"
@@ -144,8 +143,7 @@ tracks/3/keys = {
 "values": [ 0, 1, 1, 0 ]
 }
 
-[sub_resource type="Animation" id=12]
-resource_name = "attack_right"
+[sub_resource type="Animation" id=28]
 length = 0.15
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics/Sword:position")
@@ -186,8 +184,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=21]
-resource_name = "attack_up"
+[sub_resource type="Animation" id=29]
 length = 0.15
 step = 0.01
 tracks/0/type = "value"
@@ -229,7 +226,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=30]
 length = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics/Body:position")
@@ -358,7 +355,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=32]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -398,7 +395,7 @@ tracks/2/keys = {
 "values": [ 0.0, 5.0, -5.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=33]
 length = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics/Sword:rotation_degrees")
@@ -425,16 +422,16 @@ tracks/1/keys = {
 "values": [ Vector2( 10.2919, 0.314978 ), Vector2( 7, 1 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=17]
+[sub_resource type="CircleShape2D" id=34]
 radius = 31.0
 
-[sub_resource type="RectangleShape2D" id=18]
+[sub_resource type="RectangleShape2D" id=35]
 extents = Vector2( 15, 15 )
 
-[sub_resource type="RectangleShape2D" id=19]
+[sub_resource type="RectangleShape2D" id=36]
 extents = Vector2( 14, 9 )
 
-[sub_resource type="RectangleShape2D" id=20]
+[sub_resource type="RectangleShape2D" id=37]
 extents = Vector2( 14, 9 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -446,7 +443,6 @@ position = Vector2( 0.526554, 8.0295 )
 shape = SubResource( 1 )
 
 [node name="Graphics" type="Node2D" parent="."]
-rotation = 6.28319
 
 [node name="Body" type="Sprite" parent="Graphics"]
 z_index = 1
@@ -456,8 +452,8 @@ region_enabled = true
 region_rect = Rect2( 208, 236, 15, 20.2274 )
 
 [node name="Sword" type="Sprite" parent="Graphics"]
-position = Vector2( 7, 1 )
-rotation = 0.436332
+position = Vector2( 10.2919, 0.314978 )
+rotation = 0.749696
 scale = Vector2( 0.75, 0.75 )
 z_as_relative = false
 texture = ExtResource( 1 )
@@ -474,42 +470,42 @@ region_enabled = true
 region_rect = Rect2( 340, 145, 8, 30 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 10 )
+tree_root = SubResource( 25 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 11 )
+parameters/playback = SubResource( 26 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/attack_down = SubResource( 22 )
-anims/attack_right = SubResource( 12 )
-anims/attack_up = SubResource( 21 )
-anims/original_state = SubResource( 14 )
+anims/attack_down = SubResource( 27 )
+anims/attack_right = SubResource( 28 )
+anims/attack_up = SubResource( 29 )
+anims/original_state = SubResource( 30 )
 anims/roll = SubResource( 31 )
-anims/walk = SubResource( 15 )
-anims/walk_transition = SubResource( 16 )
+anims/walk = SubResource( 32 )
+anims/walk_transition = SubResource( 33 )
 
 [node name="UsableRange" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UsableRange"]
-shape = SubResource( 17 )
+shape = SubResource( 34 )
 
 [node name="SideMeleeDamageArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SideMeleeDamageArea"]
 position = Vector2( 17, -1 )
-shape = SubResource( 18 )
+shape = SubResource( 35 )
 
 [node name="TopMeleeDamageArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopMeleeDamageArea"]
 position = Vector2( 0, -10 )
-shape = SubResource( 19 )
+shape = SubResource( 36 )
 
 [node name="BottomMeleeDamageArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomMeleeDamageArea"]
 position = Vector2( 0, 13 )
-shape = SubResource( 20 )
+shape = SubResource( 37 )
 
 [connection signal="body_entered" from="UsableRange" to="." method="_on_UsableRange_body_entered"]
 [connection signal="body_exited" from="UsableRange" to="." method="_on_UsableRange_body_exited"]
