@@ -127,3 +127,15 @@ func check_usables():
 func _on_roll_animation_finish():
 	if state == States.ROLLING:
 		state = States.DEFAULT
+
+func pickup_exp(ex):
+	pass
+	
+func _on_PickupRange_body_entered(body):
+	if body.has_method("pickup"):
+		body.pickup(self) 
+
+func _on_PickupRange_area_entered(area):
+	var parent = area.get_parent()
+	if parent.has_method("pickup"):
+		parent.pickup(self)

@@ -1,7 +1,9 @@
 extends KinematicBody2D
 
 var path := PoolVector2Array() setget set_path
-var speed : = 100
+var speed := 100
+var current_speed := speed
+var speed_in_torch_light := 30
 var HP = 150
 enum States {DEFAULT, DAMAGED}
 var state = States.DEFAULT
@@ -9,16 +11,17 @@ var attacker_position = null
 const DAMAGE_SPEED = 350
 const DAMAGE_DISTANCE = 25 #Distance to travel after being damaged
 var damaged_position = null # our position before taking damage
-var experience_points = 
+var experience_points = preload("res://Scenes/ExperiencePoint.tscn")
+var rng = RandomNumberGenerator.new()
 
 func _physics_process(delta):
 	match state:
 		States.DEFAULT:
-			var move_distance = speed * delta
+			var move_distance = current_speed * delta
 			var nav = get_tree().get_root().find_node("Navigation2D", true, false)
 			var player = get_tree().get_root().find_node("Player", true, false)
 			path = nav.get_simple_path(global_position, player.global_position)
-			#move_along_path(move_distance) #TODO UNCOMMENT THIS
+			move_along_path(move_distance) #TODO UNCOMMENT THIS
 		States.DAMAGED:
 			if damaged_position != null:
 				if position.distance_to(damaged_position) < DAMAGE_DISTANCE and $DamagedTimer.time_left > 0:
@@ -55,7 +58,10 @@ func take_damage(attacker):
 		state = States.DAMAGED
 		$DamagedTimer.start()
 		if HP <= 0:
-			
+			for i in range(rng.randi_range(10,15)):
+				var ex = experience_points.instance()
+				ex.global_position = global_position
+				get_tree().get_root().add_child(ex)
 			queue_free()
 
 func set_path(value):
@@ -63,3 +69,9 @@ func set_path(value):
 	if value.size() == 0:
 		return
 	set_process(true)
+
+func on_torch_light_enter():
+	current_speed = speed_in_torch_light
+
+func on_torch_light_exit():
+	current_speed = speed 
