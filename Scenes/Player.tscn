@@ -1,8 +1,9 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Assets/Tilesets/0x72_16x16DungeonTileset.v4.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Tilesets/0x72_DungeonTilesetII_v1.4.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/light.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.13311, 2 )
@@ -68,24 +69,33 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=24]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+switch_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id=25]
 states/attack_down/node = SubResource( 2 )
-states/attack_down/position = Vector2( 153.385, 365 )
+states/attack_down/position = Vector2( -115.615, 345 )
 states/attack_right/node = SubResource( 3 )
-states/attack_right/position = Vector2( 153.385, 184 )
+states/attack_right/position = Vector2( -115.615, 26 )
 states/attack_up/node = SubResource( 4 )
-states/attack_up/position = Vector2( 153.385, 275 )
+states/attack_up/position = Vector2( -115.615, 202 )
 states/original_state/node = SubResource( 5 )
-states/original_state/position = Vector2( 153.385, 26 )
+states/original_state/position = Vector2( 252.385, 26 )
 states/roll/node = SubResource( 6 )
-states/roll/position = Vector2( 564, 26 )
+states/roll/position = Vector2( 643, 26 )
 states/walk/node = SubResource( 7 )
-states/walk/position = Vector2( 564, 330 )
+states/walk/position = Vector2( 643, 330 )
 states/walk_transition/node = SubResource( 8 )
-states/walk_transition/position = Vector2( 564, 138 )
-transitions = [ "original_state", "walk_transition", SubResource( 9 ), "walk_transition", "walk", SubResource( 10 ), "walk", "attack_right", SubResource( 11 ), "original_state", "attack_right", SubResource( 12 ), "walk", "attack_up", SubResource( 13 ), "walk", "attack_down", SubResource( 14 ), "attack_right", "attack_up", SubResource( 15 ), "attack_up", "attack_right", SubResource( 16 ), "attack_up", "attack_down", SubResource( 17 ), "attack_down", "attack_up", SubResource( 18 ), "original_state", "roll", SubResource( 19 ), "roll", "original_state", SubResource( 20 ), "walk_transition", "attack_right", SubResource( 21 ), "walk_transition", "attack_up", SubResource( 22 ), "walk_transition", "attack_down", SubResource( 23 ), "walk", "original_state", SubResource( 24 ) ]
+states/walk_transition/position = Vector2( 643, 143 )
+transitions = [ "original_state", "walk_transition", SubResource( 9 ), "walk_transition", "walk", SubResource( 10 ), "walk", "attack_right", SubResource( 11 ), "original_state", "attack_right", SubResource( 12 ), "walk", "attack_up", SubResource( 13 ), "walk", "attack_down", SubResource( 14 ), "attack_right", "attack_up", SubResource( 15 ), "attack_up", "attack_right", SubResource( 16 ), "attack_up", "attack_down", SubResource( 17 ), "attack_down", "attack_up", SubResource( 18 ), "original_state", "roll", SubResource( 19 ), "roll", "original_state", SubResource( 20 ), "walk_transition", "attack_right", SubResource( 21 ), "walk_transition", "attack_up", SubResource( 22 ), "walk_transition", "attack_down", SubResource( 23 ), "walk", "original_state", SubResource( 24 ), "attack_right", "original_state", SubResource( 39 ), "attack_up", "original_state", SubResource( 40 ), "attack_down", "original_state", SubResource( 41 ) ]
 start_node = "original_state"
-graph_offset = Vector2( -110.88, -11.3575 )
+graph_offset = Vector2( -553.88, -43.3575 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=26]
 
@@ -438,7 +448,6 @@ extents = Vector2( 14, 9 )
 radius = 12.0
 
 [node name="Player" type="KinematicBody2D"]
-z_index = -2
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -449,7 +458,6 @@ shape = SubResource( 1 )
 
 [node name="Body" type="Sprite" parent="Graphics"]
 z_index = 1
-z_as_relative = false
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 208, 236, 15, 20.2274 )
@@ -458,7 +466,6 @@ region_rect = Rect2( 208, 236, 15, 20.2274 )
 position = Vector2( 10.2919, 0.314978 )
 rotation = 0.749696
 scale = Vector2( 0.75, 0.75 )
-z_as_relative = false
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 195, 39, 10, 24 )
@@ -488,7 +495,6 @@ anims/walk = SubResource( 32 )
 anims/walk_transition = SubResource( 33 )
 
 [node name="UsableRange" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UsableRange"]
 shape = SubResource( 34 )
@@ -519,6 +525,36 @@ shape = SubResource( 37 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupRange"]
 position = Vector2( 1, 1 )
 shape = SubResource( 38 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 4 )
+color = Color( 1, 0.839216, 0.839216, 1 )
+energy = 0.75
+shadow_enabled = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+follow_viewport_enable = true
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Label" type="Label" parent="UI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -531.0
+margin_top = -325.0
+margin_right = -490.0
+margin_bottom = -311.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Meme"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="body_entered" from="UsableRange" to="." method="_on_UsableRange_body_entered"]
 [connection signal="body_exited" from="UsableRange" to="." method="_on_UsableRange_body_exited"]

@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="ShallowBeThyGraves"
-run/main_scene="res://Scenes/Maps/Mapv2.tscn"
+run/main_scene="res://Scenes/Maps/Mapv3.tscn"
 config/icon="res://icon.png"
 
 [autoload]
