@@ -1,5 +1,9 @@
 extends KinematicBody2D
-#meme man u suck
+signal change_spell
+signal player_usable_entered
+signal player_usable_exited
+signal player_used
+
 var move_speed = 80
 var roll_speed = 140
 var roll_stamina_cost = 20
@@ -13,7 +17,6 @@ var attributes = {
 enum States {DEFAULT, ATTACKING, ROLLING, SPELLCASTING}
 var state = States.DEFAULT
 onready var animator = $AnimationTree
-onready var actionLabel = $UI/Label
 var usable_object = null
 var attackDamage = 50 #TODO getter that multiplies by a skill
 var health = 100 #TODO getter that multiplies by a skill
@@ -22,10 +25,15 @@ var stamina_regen_rate = 30#TODO regen that shit somehow
 var velocity := Vector2()
 
 
+
 func _ready():
 	animator.active = true
 	$Graphics/SpellCaster.hide()
 	play_animation("original_state")
+	var root = get_tree().get_current_scene()
+	connect("player_usable_exited", root, "_on_player_usable_exited")
+	connect("player_usable_entered", root, "_on_player_usable_entered")
+	connect("player_used", root, "_on_player_used")
 
 func _physics_process(_delta):
 	match state:
@@ -51,6 +59,9 @@ func state_default():
 		play_animation("walk")
 	else:
 		play_animation("original_state")
+	
+	if Input.is_action_just_pressed("change_spell"):
+		emit_signal("change_spell")
 	
 	#These two conditionals must be after velocity is determined
 	if (Input.is_action_just_pressed("roll") and velocity != Vector2.ZERO  and stamina - roll_stamina_cost >= 0):
@@ -109,7 +120,7 @@ func _on_UsableRange_body_entered(body):
 func _on_UsableRange_body_exited(body):
 	if "is_usable" in body and usable_object == body:
 		usable_object = null
-		actionLabel.text = ""
+		emit_signal("player_usable_exited")#UI updates here
 
 func _on_attack_animation_finish():
 	if state == States.ATTACKING:
@@ -117,11 +128,12 @@ func _on_attack_animation_finish():
 
 func check_usables():
 	if usable_object != null:
-		actionLabel.text = usable_object.usableMessage
+		emit_signal("player_usable_entered", usable_object.usable_message)#, usable_object.usableMessage) #UI updates here
 		if Input.is_action_just_pressed("use"):
 			usable_object.use()
+			emit_signal("player_used")
 			usable_object = null
-			actionLabel.text = ""
+			
 
 func _on_roll_animation_finish():
 	if state == States.ROLLING:

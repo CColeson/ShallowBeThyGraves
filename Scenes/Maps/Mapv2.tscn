@@ -1,12 +1,13 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Scenes/Maps/Mapv2.tres" type="TileSet" id=1]
+[ext_resource path="res://Resources/TileSets/Mapv2.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Torch.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Mapv2.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Pillar.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/ExperiencePoint.tscn" type="PackedScene" id=8]
+
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 23, 258, 23, 34, 215, 34, 215, 194, 311, 258, 247, 194, 311, 34, 247, 34 )

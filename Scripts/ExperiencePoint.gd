@@ -9,7 +9,7 @@ var experience_points
 
 func _ready():
 	rng.randomize()
-	$Light2D.energy = rng.randf_range(0.5, 1.3)
+	#$Light2D.energy = rng.randf_range(0.5, 1.3)
 	var s =  rng.randf_range(1,1.5)
 	scale *= s
 	$AnimationPlayer.play("default")

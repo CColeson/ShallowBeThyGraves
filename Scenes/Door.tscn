@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Sprites/modified-door.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Door.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7, 6 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 18, 13 )
+
+[sub_resource type="OccluderPolygon2D" id=2]
+polygon = PoolVector2Array( -32, -10, -16, -10, -16, -18, -9, -26, 0, -27, 9, -26, 16, -18, 16, -10, 32, -10, 32, -15, 20, -15, 20, -19, 13, -27, 0, -30, -13, -27, -20, -19, -20, -15, -32, -15 )
+
+[sub_resource type="OccluderPolygon2D" id=4]
+polygon = PoolVector2Array( -32, -4, -32, 1, -20, 1, -20, -4 )
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource( 2 )
+
+[node name="Open" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 64, 3, 32, 32 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Closed" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 16, 3, 32, 32 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="FramePieces" type="Node2D" parent="."]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="TopFrame" type="Sprite" parent="FramePieces"]
+position = Vector2( 0, -17 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 16, 0, 32, 3 )
+
+[node name="LeftFrame" type="Sprite" parent="FramePieces"]
+position = Vector2( -24, 0 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 0, 3, 16, 32 )
+
+[node name="RightFrame" type="Sprite" parent="FramePieces"]
+position = Vector2( 24, 1 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 48, 5, 16, 30 )
+
+[node name="FrameCollision" type="CollisionShape2D" parent="."]
+position = Vector2( -25, 10 )
+shape = SubResource( 1 )
+
+[node name="FrameCollision2" type="CollisionShape2D" parent="."]
+position = Vector2( 25, 10 )
+shape = SubResource( 1 )
+
+[node name="ClosedCollision" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 3 )
+shape = SubResource( 3 )
+
+[node name="ClosedOccluder" type="LightOccluder2D" parent="."]
+position = Vector2( 0, 11 )
+occluder = SubResource( 2 )
+
+[node name="OpenOccluder" type="LightOccluder2D" parent="."]
+occluder = SubResource( 4 )
+
+[node name="OpenOccluder2" type="LightOccluder2D" parent="."]
+position = Vector2( 52, 0 )
+occluder = SubResource( 4 )

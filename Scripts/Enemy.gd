@@ -58,7 +58,7 @@ func take_damage(attacker):
 		state = States.DAMAGED
 		$DamagedTimer.start()
 		if HP <= 0:
-			for i in range(rng.randi_range(10,15)):
+			for _i in range(rng.randi_range(10,15)):
 				var ex = experience_points.instance()
 				ex.global_position = global_position
 				get_tree().get_root().add_child(ex)
