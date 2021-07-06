@@ -12,7 +12,7 @@ func _ready():
 	#$Light2D.energy = rng.randf_range(0.5, 1.3)
 	var s =  rng.randf_range(1,1.5)
 	scale *= s
-	$AnimationPlayer.play("default")
+	#$AnimationPlayer.play("default2")
 	$AnimationPlayer.advance(rng.randf_range(0, $AnimationPlayer.get_animation("default").length))
 	
 	var direction = rng.randf_range(0, 360)

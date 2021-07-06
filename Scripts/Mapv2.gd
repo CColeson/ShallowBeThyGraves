@@ -3,6 +3,7 @@ extends Node2D
 
 onready var ui_animator = $UI/Control/AnimationPlayer
 onready var spell_state_timer = $UI/Control/SpellSelector/StateTimer
+onready var item_state_timer = $UI/Control/ItemSelector/ItemStateTimer
 onready var action_label = $UI/Control/ActionLabel
 
 onready var player = find_node("Player", true, false)
@@ -17,8 +18,16 @@ func _on_Player_change_spell():
 		ui_animator.play("change_spell")
 	spell_state_timer.start()
 
+func _on_Player_change_item():
+	if item_state_timer.time_left <= 0:
+		ui_animator.play("change_item")
+	item_state_timer.start()
+
 func _on_StateTimer_timeout():
 	ui_animator.play("hide_spells")
+
+func _on_ItemStateTimer_timeout():
+	ui_animator.play("hide_items")
 
 
 func _on_player_usable_entered(message):
@@ -30,3 +39,9 @@ func _on_player_usable_exited():
 
 func _on_player_used():
 	action_label.text = ""
+
+
+
+
+
+

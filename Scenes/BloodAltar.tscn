@@ -1,8 +1,6 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Tilesets/16x16_RPG_Pack_v3.0_no_background.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Tilesets/0x72_DungeonTilesetII_v1.4.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Tilesets/0x72_16x16DungeonTileset.v4.png" type="Texture" id=3]
+[ext_resource path="res://Resources/BloodAltarGraphics.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/BloodAltar.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -11,32 +9,8 @@ extents = Vector2( 4, 2.92199 )
 [node name="BloodAltar" type="StaticBody2D"]
 script = ExtResource( 4 )
 
-[node name="Sprite2" type="Sprite" parent="."]
-texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 116, 160, 8, 14 )
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -4.33098, 5.56756 )
-scale = Vector2( 0.763765, 0.763765 )
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 292, 326, 8, 8 )
-
-[node name="Sprite3" type="Sprite" parent="."]
-modulate = Color( 0.386719, 0.309677, 0.349873, 1 )
-position = Vector2( 0.0166855, -5.35323 )
-scale = Vector2( 0.649231, 0.614154 )
-texture = ExtResource( 1 )
-region_enabled = true
-region_rect = Rect2( 162, 98, 12, 12 )
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 4 )
 shape = SubResource( 1 )
+
+[node name="Graphics" parent="." instance=ExtResource( 1 )]

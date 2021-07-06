@@ -1,5 +1,6 @@
 extends KinematicBody2D
 signal change_spell
+signal change_item
 signal player_usable_entered
 signal player_usable_exited
 signal player_used
@@ -17,14 +18,12 @@ var attributes = {
 enum States {DEFAULT, ATTACKING, ROLLING, SPELLCASTING}
 var state = States.DEFAULT
 onready var animator = $AnimationTree
-var usable_object = null
+var usable_objects = []
 var attackDamage = 50 #TODO getter that multiplies by a skill
 var health = 100 #TODO getter that multiplies by a skill
 var stamina = 50 #TODO getter that multiplies by a skill
 var stamina_regen_rate = 30#TODO regen that shit somehow
 var velocity := Vector2()
-
-
 
 func _ready():
 	animator.active = true
@@ -62,7 +61,8 @@ func state_default():
 	
 	if Input.is_action_just_pressed("change_spell"):
 		emit_signal("change_spell")
-	
+	if Input.is_action_just_pressed("change_item"):
+		emit_signal("change_item")
 	#These two conditionals must be after velocity is determined
 	if (Input.is_action_just_pressed("roll") and velocity != Vector2.ZERO  and stamina - roll_stamina_cost >= 0):
 		stamina -= roll_stamina_cost
@@ -115,11 +115,11 @@ func play_animation(animation_name):
 func _on_UsableRange_body_entered(body):
 	if "is_usable" in body:
 		if body.is_usable:
-			usable_object = body
+			usable_objects.append(body)
 
 func _on_UsableRange_body_exited(body):
-	if "is_usable" in body and usable_object == body:
-		usable_object = null
+	if "is_usable" in body and usable_objects.has(body):
+		usable_objects.erase(body)
 		emit_signal("player_usable_exited")#UI updates here
 
 func _on_attack_animation_finish():
@@ -127,12 +127,17 @@ func _on_attack_animation_finish():
 		state = States.DEFAULT
 
 func check_usables():
-	if usable_object != null:
-		emit_signal("player_usable_entered", usable_object.usable_message)#, usable_object.usableMessage) #UI updates here
+	if usable_objects.size() != 0:
+		#get the closest object
+		var closest_object = usable_objects[0]
+		for i in usable_objects:
+			if i.global_position.distance_to(global_position) < closest_object.global_position.distance_to(global_position):
+				closest_object = i
+		emit_signal("player_usable_entered", closest_object.usable_message)#, usable_object.usableMessage) #UI updates here
 		if Input.is_action_just_pressed("use"):
-			usable_object.use()
+			closest_object.use()
 			emit_signal("player_used")
-			usable_object = null
+			usable_objects.erase(closest_object)
 			
 
 func _on_roll_animation_finish():
