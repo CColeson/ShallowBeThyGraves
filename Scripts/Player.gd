@@ -1,4 +1,6 @@
 extends KinematicBody2D
+class_name Player
+
 signal change_spell
 signal change_item
 signal player_usable_entered
@@ -155,3 +157,6 @@ func _on_PickupRange_area_entered(area):
 	var parent = area.get_parent()
 	if parent.has_method("pickup"):
 		parent.pickup(self)
+
+func get_class():
+	return "Player"
