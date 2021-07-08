@@ -5,14 +5,14 @@ onready var global = get_node("/root/Global")
 onready var ui_animator = $UI/Control/AnimationPlayer
 onready var spell_state_timer = $UI/Control/SpellSelector/StateTimer
 onready var item_state_timer = $UI/Control/ItemSelector/ItemStateTimer
-onready var action_label = $UI/Control/TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer/ActionContainer/ActionLabel
-onready var action_menu = $UI/Control/TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer/ActionContainer
+onready var action_label = $UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionContainer/ActionLabel
+onready var action_menu = $UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionContainer
 
 onready var player = find_node("Player", true, false)
 onready var lHP = $UI/Control/VBoxContainer/LabelHP
 onready var lStamina = $UI/Control/VBoxContainer/LabelStamina
 
-onready var lRound = $UI/Control/TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer/RoundContainer/RoundLabel
+onready var lRound = $UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/RoundContainer/RoundLabel
 
 func _process(delta):
 	lHP.text = "HP: " + str(player.health)
@@ -44,12 +44,12 @@ func _on_player_usable_entered(message):
 
 func _on_player_usable_exited(player):
 	action_label.text = ""
-	if (player.usable_objects.size() > 0 and action_menu.modulate.a > 0):
+	if (player.usable_objects.size() == 0 and action_menu.modulate.a > 0):
 		play_animation("hide_action_menu")
 	
 func _on_player_used(player):
 	action_label.text = ""
-	if (player.usable_objects.size() > 0 and action_menu.modulate.a > 0):
+	if (player.usable_objects.size() == 0 and action_menu.modulate.a > 0):
 		play_animation("hide_action_menu")
 	
 func play_animation(animation_name):

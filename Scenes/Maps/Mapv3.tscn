@@ -620,7 +620,7 @@ tracks/0/keys = {
 resource_name = "hide_action_menu"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer/ActionContainer:modulate")
+tracks/0/path = NodePath("TopLeftUI/VBoxContainer/HBoxContainer/ActionContainer:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -702,7 +702,7 @@ tracks/0/keys = {
 resource_name = "show_action_menu"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer/ActionContainer:modulate")
+tracks/0/path = NodePath("TopLeftUI/VBoxContainer/HBoxContainer/ActionContainer:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -1022,19 +1022,11 @@ anims/hide_items = SubResource( 28 )
 anims/hide_spells = SubResource( 29 )
 anims/show_action_menu = SubResource( 37 )
 
-[node name="TopLeftUI" type="Control" parent="UI/Control"]
-margin_right = 568.0
-margin_bottom = 92.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/Control/TopLeftUI"]
+[node name="TopLeftUI" type="MarginContainer" parent="UI/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -109.0
+margin_right = -712.0
+margin_bottom = -524.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_top = 14
@@ -1043,20 +1035,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/TopLeftUI/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/TopLeftUI"]
 margin_left = 18.0
 margin_top = 14.0
-margin_right = 459.0
-margin_bottom = 92.0
+margin_right = 312.0
+margin_bottom = 76.0
 size_flags_horizontal = 3
 custom_constants/separation = 14
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/TopLeftUI/MarginContainer/VBoxContainer"]
-margin_right = 441.0
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/TopLeftUI/VBoxContainer"]
+margin_right = 294.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 
-[node name="RoundContainer" type="NinePatchRect" parent="UI/Control/TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="RoundContainer" type="NinePatchRect" parent="UI/Control/TopLeftUI/VBoxContainer/HBoxContainer"]
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
@@ -1070,7 +1062,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RoundLabel" type="Label" parent="UI/Control/TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer/RoundContainer"]
+[node name="RoundLabel" type="Label" parent="UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/RoundContainer"]
 modulate = Color( 0.466667, 0, 0, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1089,7 +1081,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NinePatchRect" type="NinePatchRect" parent="UI/Control/TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer/RoundContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/RoundContainer"]
 show_behind_parent = true
 anchor_left = 0.5
 anchor_top = 0.5
@@ -1108,10 +1100,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ActionContainer" type="NinePatchRect" parent="UI/Control/TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="ActionContainer" type="NinePatchRect" parent="UI/Control/TopLeftUI/VBoxContainer/HBoxContainer"]
 show_behind_parent = true
 margin_left = 44.0
-margin_right = 441.0
+margin_right = 294.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 25, 22 )
 size_flags_horizontal = 3
@@ -1125,11 +1117,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NinePatchRect" type="NinePatchRect" parent="UI/Control/TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer/ActionContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionContainer"]
 show_behind_parent = true
 margin_left = 6.0
 margin_top = 6.0
-margin_right = 390.0
+margin_right = 246.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 texture = ExtResource( 22 )
@@ -1141,33 +1133,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ActionLabel" type="Label" parent="UI/Control/TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer/ActionContainer"]
+[node name="ActionLabel" type="Label" parent="UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionContainer"]
 margin_left = 12.0
 margin_top = 8.0
-margin_right = 385.0
+margin_right = 246.0
 margin_bottom = 31.0
 custom_fonts/font = SubResource( 30 )
-text = "Press my ass"
+text = "Press E to Light The Torch"
 script = ExtResource( 29 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="Control" parent="UI/Control/TopLeftUI/MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="UI/Control/TopLeftUI/VBoxContainer"]
 margin_top = 54.0
-margin_right = 441.0
+margin_right = 294.0
 margin_bottom = 54.0
 
-[node name="Control" type="Control" parent="UI/Control/TopLeftUI/MarginContainer/VBoxContainer/Control"]
+[node name="Control" type="Control" parent="UI/Control/TopLeftUI/VBoxContainer/Control"]
 margin_left = 13.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BloodDrops" parent="UI/Control/TopLeftUI/MarginContainer/VBoxContainer/Control/Control" instance=ExtResource( 25 )]
+[node name="BloodDrops" parent="UI/Control/TopLeftUI/VBoxContainer/Control/Control" instance=ExtResource( 25 )]
 scale = Vector2( 1.5, 1.5 )
 
-[node name="BloodLabel" type="Label" parent="UI/Control/TopLeftUI/MarginContainer/VBoxContainer/Control"]
+[node name="BloodLabel" type="Label" parent="UI/Control/TopLeftUI/VBoxContainer/Control"]
 margin_left = 27.0
 margin_top = -10.0
 custom_fonts/font = ExtResource( 27 )
@@ -1358,6 +1350,7 @@ __meta__ = {
 }
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color( 0.254902, 0.254902, 0.254902, 1 )
 
 [node name="FloorDecorations" type="Node" parent="."]

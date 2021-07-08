@@ -138,8 +138,9 @@ func check_usables():
 		emit_signal("player_usable_entered", closest_object.usable_message)#, usable_object.usableMessage) #UI updates here
 		if Input.is_action_just_pressed("use"):
 			closest_object.use()
-			emit_signal("player_used", self)
 			usable_objects.erase(closest_object)
+			emit_signal("player_used", self)
+			
 			
 
 func _on_roll_animation_finish():

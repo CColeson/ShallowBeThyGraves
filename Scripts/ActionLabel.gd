@@ -12,7 +12,6 @@ onready var xHBox = HBox.rect_size.x
 onready var xVBox = VBox.rect_size.x
 onready var xMCon = MCon.rect_size.x
 
-
 func set_text_and_resize(text):
 	self.text = text
 	var width = self.rect_size.x
@@ -22,3 +21,4 @@ func set_text_and_resize(text):
 		VBox.rect_size.x += width -  bg.rect_size.x + 12
 		HBox.rect_size.x += width -  bg.rect_size.x + 12
 		bg.rect_size.x += width - bg.rect_size.x + 12
+	
