@@ -5,13 +5,13 @@ onready var global = get_node("/root/Global")
 onready var ui_animator = $UI/Control/AnimationPlayer
 onready var spell_state_timer = $UI/Control/SpellSelector/StateTimer
 onready var item_state_timer = $UI/Control/ItemSelector/ItemStateTimer
-onready var action_label = $UI/Control/ActionLabel
+onready var action_label = $UI/Control/TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer/ActionContainer/ActionLabel
 
 onready var player = find_node("Player", true, false)
 onready var lHP = $UI/Control/VBoxContainer/LabelHP
 onready var lStamina = $UI/Control/VBoxContainer/LabelStamina
 
-onready var lRound = $UI/Control/RoundContainer/RoundLabel
+onready var lRound = $UI/Control/TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer/RoundContainer/RoundLabel
 
 func _process(delta):
 	lHP.text = "HP: " + str(player.health)
@@ -36,7 +36,7 @@ func _on_ItemStateTimer_timeout():
 
 func _on_player_usable_entered(message):
 	if message != null:
-		action_label.text = message
+		action_label.set_text_and_resize(message)
 
 func _on_player_usable_exited():
 	action_label.text = ""
