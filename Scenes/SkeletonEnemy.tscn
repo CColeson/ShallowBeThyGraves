@@ -1,0 +1,90 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Tilesets/0x72_DungeonTilesetII_v1.4.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Tilesets/0x72_16x16DungeonTileset.v4.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 6 )
+
+[node name="KinematicBody2D" type="KinematicBody2D"]
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Graphics"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 371, 91, 10, 5 )
+
+[node name="Sprite3" type="Sprite" parent="Graphics"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 403, 93, 10, 3 )
+
+[node name="Sprite4" type="Sprite" parent="Graphics"]
+position = Vector2( 0, 4 )
+scale = Vector2( 0.9, 1 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 403, 93, 10, 3 )
+
+[node name="Sprite5" type="Sprite" parent="Graphics"]
+position = Vector2( 0, 8 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 403, 93, 10, 3 )
+
+[node name="Sprite6" type="Sprite" parent="Graphics"]
+position = Vector2( 0, 12 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 372, 91, 8, 5 )
+
+[node name="Sprite7" type="Sprite" parent="Graphics"]
+position = Vector2( -4, 16 )
+rotation = 0.34214
+scale = Vector2( 0.646371, 1.13027 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 486, 91, 4, 5 )
+
+[node name="Sprite8" type="Sprite" parent="Graphics"]
+position = Vector2( 4, 16 )
+rotation = -0.313109
+scale = Vector2( 0.646371, 1.13027 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 486, 91, 4, 5 )
+
+[node name="Sprite2" type="Sprite" parent="Graphics"]
+position = Vector2( 0, -8 )
+scale = Vector2( -1.69826, 1.77283 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 292, 326, 8, 8 )
+
+[node name="Arm" type="Sprite" parent="Graphics"]
+position = Vector2( 8, 3 )
+rotation = -1.93378
+scale = Vector2( 1, 1.37171 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 111, 129, 4, 4 )
+
+[node name="Arm2" type="Sprite" parent="Graphics"]
+position = Vector2( -7, 4 )
+rotation = -1.93378
+scale = Vector2( 1, 1.37171 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 111, 129, 4, 4 )
+
+[node name="Sword" type="Sprite" parent="Graphics"]
+position = Vector2( 11, -5 )
+rotation = 0.104639
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 307, 25, 10, 22 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 12 )
+shape = SubResource( 1 )

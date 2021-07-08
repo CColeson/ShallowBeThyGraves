@@ -14,7 +14,7 @@ func _ready():
 	if already_lit:
 		use()
 
-func use():
+func use(_caller = null):
 	$AnimatedSprite.play("used")
 	$AnimationPlayer.play("default")
 	$Light2D.enabled = true

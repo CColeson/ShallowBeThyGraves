@@ -7,6 +7,7 @@ onready var spell_state_timer = $UI/Control/SpellSelector/StateTimer
 onready var item_state_timer = $UI/Control/ItemSelector/ItemStateTimer
 onready var action_label = $UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionContainer/ActionLabel
 onready var action_menu = $UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionContainer
+onready var blood_label = $UI/Control/TopLeftUI/VBoxContainer/BloodContainer/BloodLabel
 
 onready var player = find_node("Player", true, false)
 onready var lHP = $UI/Control/VBoxContainer/LabelHP
@@ -18,6 +19,7 @@ func _process(delta):
 	lHP.text = "HP: " + str(player.health)
 	lStamina.text = "Stamina: " + str(player.stamina)
 	lRound.text = str(global.current_round)
+	blood_label.text = str(player.blood_fragments)
 
 func _on_Player_change_spell():
 	if spell_state_timer.time_left <= 0:
@@ -57,3 +59,9 @@ func play_animation(animation_name):
 	if ui_animator.current_animation != animation_name || ui_animator.current_animation != "":
 		ui_animator.play(animation_name)
 		
+
+func _on_Door_cant_afford_door(required_blood_fragments):
+	print("dasdbuni")
+	action_label.set_text_and_resize("You need " + str(required_blood_fragments) + " more blood fragments to open this door!")
+	if (action_menu.modulate.a == 0):
+			play_animation("show_action_menu")

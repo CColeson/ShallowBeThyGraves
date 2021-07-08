@@ -26,6 +26,7 @@ var health = 100 #TODO getter that multiplies by a skill
 var stamina = 50 #TODO getter that multiplies by a skill
 var stamina_regen_rate = 30#TODO regen that shit somehow
 var velocity := Vector2()
+var blood_fragments = 0
 
 func _ready():
 	animator.active = true
@@ -135,24 +136,23 @@ func check_usables():
 		for i in usable_objects:
 			if i.global_position.distance_to(global_position) < closest_object.global_position.distance_to(global_position):
 				closest_object = i
-		emit_signal("player_usable_entered", closest_object.usable_message)#, usable_object.usableMessage) #UI updates here
+		emit_signal("player_usable_entered", closest_object.usable_message)
 		if Input.is_action_just_pressed("use"):
-			closest_object.use()
-			usable_objects.erase(closest_object)
-			emit_signal("player_used", self)
-			
-			
+			closest_object.use(self)
+			var use_worked = usable_objects.erase(closest_object)
+			if use_worked == true:
+				emit_signal("player_used", self)
 
 func _on_roll_animation_finish():
 	if state == States.ROLLING:
 		state = States.DEFAULT
 
 func pickup_exp(ex):
-	pass
+	blood_fragments += ex.value
 	
 func _on_PickupRange_body_entered(body):
 	if body.has_method("pickup"):
-		body.pickup(self) 
+		body.pickup(self)
 
 func _on_PickupRange_area_entered(area):
 	var parent = area.get_parent()
