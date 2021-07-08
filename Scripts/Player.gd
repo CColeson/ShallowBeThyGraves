@@ -38,6 +38,7 @@ func _ready():
 	connect("player_used", root, "_on_player_used")
 
 func _physics_process(_delta):
+	print(usable_objects)
 	match state:
 		States.DEFAULT : state_default()
 		States.ATTACKING : state_attacking()
@@ -139,8 +140,8 @@ func check_usables():
 		emit_signal("player_usable_entered", closest_object.usable_message)
 		if Input.is_action_just_pressed("use"):
 			var use_worked = closest_object.use(self)
-			usable_objects.erase(closest_object)
 			if use_worked == true:
+				usable_objects.erase(closest_object)
 				emit_signal("player_used", self)
 
 func _on_roll_animation_finish():

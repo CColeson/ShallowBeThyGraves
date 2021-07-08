@@ -5,8 +5,8 @@ onready var global = get_node("/root/Global")
 onready var ui_animator = $UI/Control/AnimationPlayer
 onready var spell_state_timer = $UI/Control/SpellSelector/StateTimer
 onready var item_state_timer = $UI/Control/ItemSelector/ItemStateTimer
-onready var action_label = $UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionContainer/ActionLabel
-onready var action_menu = $UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionContainer
+onready var action_label = $UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionLabel
+onready var action_menu = $UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionLabel
 onready var blood_label = $UI/Control/TopLeftUI/VBoxContainer/BloodContainer/BloodLabel
 
 onready var player = find_node("Player", true, false)
@@ -39,18 +39,18 @@ func _on_ItemStateTimer_timeout():
 
 func _on_player_usable_entered(message):
 	if message != null:
-		action_label.set_text_and_resize(message)
+		action_label.text = message
 		if (action_menu.modulate.a == 0):
 			play_animation("show_action_menu")
 		
 
 func _on_player_usable_exited(player):
-	action_label.text = ""
+	#action_label.text = ""
 	if (player.usable_objects.size() == 0 and action_menu.modulate.a > 0):
 		play_animation("hide_action_menu")
 	
 func _on_player_used(player):
-	action_label.text = ""
+	#action_label.text = ""
 	if (player.usable_objects.size() == 0 and action_menu.modulate.a > 0):
 		play_animation("hide_action_menu")
 	
@@ -61,7 +61,6 @@ func play_animation(animation_name):
 		
 
 func _on_Door_cant_afford_door(required_blood_fragments):
-	print("dasdbuni")
-	action_label.set_text_and_resize("You need " + str(required_blood_fragments) + " more blood fragments to open this door!")
+	action_label.text = "You need " + str(required_blood_fragments) + " more blood fragments to open this door!"
 	if (action_menu.modulate.a == 0):
 			play_animation("show_action_menu")

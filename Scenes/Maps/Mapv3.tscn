@@ -616,11 +616,11 @@ tracks/0/keys = {
 "values": [ Vector2( -289, 2 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id=28]
 resource_name = "hide_action_menu"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("TopLeftUI/VBoxContainer/HBoxContainer/ActionContainer:modulate")
+tracks/0/path = NodePath("TopLeftUI/VBoxContainer/HBoxContainer/ActionLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -632,7 +632,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="Animation" id=29]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("ItemSelector:margin_left")
@@ -683,7 +683,7 @@ tracks/3/keys = {
 "values": [ -48.0, -48.0 ]
 }
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=30]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpellSelector:rect_position")
@@ -698,11 +698,11 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -289, 0 ) ]
 }
 
-[sub_resource type="Animation" id=37]
+[sub_resource type="Animation" id=31]
 resource_name = "show_action_menu"
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("TopLeftUI/VBoxContainer/HBoxContainer/ActionContainer:modulate")
+tracks/0/path = NodePath("TopLeftUI/VBoxContainer/HBoxContainer/ActionLabel:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -714,13 +714,13 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=30]
+[sub_resource type="DynamicFont" id=32]
 size = 18
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 26 )
 
-[sub_resource type="StyleBoxFlat" id=31]
+[sub_resource type="StyleBoxFlat" id=33]
 bg_color = Color( 0.196078, 0.196078, 0.196078, 0.647059 )
 border_width_top = 2
 border_width_right = 2
@@ -729,20 +729,20 @@ corner_radius_top_right = 10
 expand_margin_left = 1.0
 expand_margin_right = 1.0
 
-[sub_resource type="StyleBoxFlat" id=32]
+[sub_resource type="StyleBoxFlat" id=34]
 bg_color = Color( 0.196078, 0.196078, 0.196078, 0.647059 )
 border_color = Color( 0, 0, 0, 0.643137 )
 corner_radius_top_left = 10
 expand_margin_left = 1.0
 expand_margin_right = 1.0
 
-[sub_resource type="Shader" id=33]
+[sub_resource type="Shader" id=35]
 
-[sub_resource type="ShaderMaterial" id=34]
+[sub_resource type="ShaderMaterial" id=36]
 render_priority = 1
-shader = SubResource( 33 )
+shader = SubResource( 35 )
 
-[sub_resource type="Environment" id=35]
+[sub_resource type="Environment" id=37]
 background_mode = 4
 tonemap_mode = 3
 auto_exposure_scale = 0.1
@@ -1017,15 +1017,15 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Control"]
 anims/change_item = SubResource( 26 )
 anims/change_spell = SubResource( 27 )
-anims/hide_action_menu = SubResource( 36 )
-anims/hide_items = SubResource( 28 )
-anims/hide_spells = SubResource( 29 )
-anims/show_action_menu = SubResource( 37 )
+anims/hide_action_menu = SubResource( 28 )
+anims/hide_items = SubResource( 29 )
+anims/hide_spells = SubResource( 30 )
+anims/show_action_menu = SubResource( 31 )
 
 [node name="TopLeftUI" type="MarginContainer" parent="UI/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = -712.0
+margin_right = -720.0
 margin_bottom = -524.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -1038,15 +1038,16 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Control/TopLeftUI"]
 margin_left = 18.0
 margin_top = 14.0
-margin_right = 312.0
+margin_right = 305.0
 margin_bottom = 76.0
 size_flags_horizontal = 3
 custom_constants/separation = 14
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/TopLeftUI/VBoxContainer"]
-margin_right = 294.0
+margin_right = 287.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
+custom_constants/separation = 22
 
 [node name="RoundContainer" type="NinePatchRect" parent="UI/Control/TopLeftUI/VBoxContainer/HBoxContainer"]
 margin_right = 40.0
@@ -1100,11 +1101,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ActionContainer" type="NinePatchRect" parent="UI/Control/TopLeftUI/VBoxContainer/HBoxContainer"]
+[node name="ActionLabel" type="Label" parent="UI/Control/TopLeftUI/VBoxContainer/HBoxContainer"]
+margin_left = 62.0
+margin_top = 8.0
+margin_right = 276.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 32 )
+text = "Press E to Light The Torch"
+script = ExtResource( 29 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionLabel"]
 show_behind_parent = true
-margin_left = 44.0
-margin_right = 294.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -8.0
+margin_top = -7.0
+margin_right = 9.0
+margin_bottom = 8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActionContainer" type="NinePatchRect" parent="UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionLabel/MarginContainer"]
+show_behind_parent = true
+margin_right = 231.0
+margin_bottom = 38.0
 rect_min_size = Vector2( 25, 22 )
 size_flags_horizontal = 3
 texture = ExtResource( 28 )
@@ -1117,12 +1141,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NinePatchRect" type="NinePatchRect" parent="UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionLabel/MarginContainer/ActionContainer"]
 show_behind_parent = true
-margin_left = 6.0
-margin_top = 6.0
-margin_right = 246.0
-margin_bottom = 35.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 3
 texture = ExtResource( 22 )
 patch_margin_left = 3
@@ -1133,21 +1155,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ActionLabel" type="Label" parent="UI/Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionContainer"]
-margin_left = 12.0
-margin_top = 8.0
-margin_right = 246.0
-margin_bottom = 31.0
-custom_fonts/font = SubResource( 30 )
-text = "Press E to Light The Torch"
-script = ExtResource( 29 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="BloodContainer" type="Control" parent="UI/Control/TopLeftUI/VBoxContainer"]
 margin_top = 54.0
-margin_right = 294.0
+margin_right = 287.0
 margin_bottom = 54.0
 
 [node name="Control" type="Control" parent="UI/Control/TopLeftUI/VBoxContainer/BloodContainer"]
@@ -1183,7 +1193,7 @@ anchor_bottom = 1.0
 margin_top = 470.0
 margin_right = 288.0
 margin_bottom = 560.0
-custom_styles/panel = SubResource( 31 )
+custom_styles/panel = SubResource( 33 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1260,7 +1270,7 @@ margin_top = -45.0
 margin_right = 144.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 288, 90 )
-custom_styles/panel = SubResource( 32 )
+custom_styles/panel = SubResource( 34 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1285,7 +1295,7 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="UI/Control/ItemSelector/HBoxContainer"]
-material = SubResource( 34 )
+material = SubResource( 36 )
 margin_right = 72.0
 margin_bottom = 72.0
 rect_min_size = Vector2( 72, 72 )
@@ -1365,7 +1375,7 @@ position = Vector2( 380, 136 )
 scale = Vector2( -1, 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 35 )
+environment = SubResource( 37 )
 
 [node name="EnemySpawners" type="Node" parent="."]
 
@@ -1383,8 +1393,8 @@ enabled = true
 modulate = Color( 2, 2, 2, 1 )
 position = Vector2( 183, 215 )
 
-[connection signal="round_start" from="RoundManager" to="RoundStartArea" method="_on_RoundManager_round_start"]
 [connection signal="round_start" from="RoundManager" to="YSort/Door/Connector" method="_on_RoundManager_round_start"]
+[connection signal="round_start" from="RoundManager" to="RoundStartArea" method="_on_RoundManager_round_start"]
 [connection signal="body_entered" from="RoundStartArea" to="RoundManager" method="_on_RoundStartArea_body_entered"]
 [connection signal="change_item" from="YSort/Player" to="." method="_on_Player_change_item"]
 [connection signal="change_spell" from="YSort/Player" to="." method="_on_Player_change_spell"]
