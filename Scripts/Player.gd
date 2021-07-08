@@ -138,8 +138,8 @@ func check_usables():
 				closest_object = i
 		emit_signal("player_usable_entered", closest_object.usable_message)
 		if Input.is_action_just_pressed("use"):
-			closest_object.use(self)
-			var use_worked = usable_objects.erase(closest_object)
+			var use_worked = closest_object.use(self)
+			usable_objects.erase(closest_object)
 			if use_worked == true:
 				emit_signal("player_used", self)
 

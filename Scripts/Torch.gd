@@ -20,6 +20,7 @@ func use(_caller = null):
 	$Light2D.enabled = true
 	is_usable = false
 	$SlowEnemyArea.monitoring = true
+	return true
 
 func _on_SlowEnemyArea_body_entered(body):
 	if body.has_method("on_torch_light_enter"):

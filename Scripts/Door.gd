@@ -34,6 +34,7 @@ func use(caller):
 		#should prove useful
 		if map_connector != null and map_connector.has_method("use"):
 			map_connector.use()
+		return true
 	else:
 		caller.usable_objects.clear() # dont ask
 		emit_signal("cant_afford_door", opening_price - caller.blood_fragments)
