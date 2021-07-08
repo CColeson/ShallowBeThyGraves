@@ -22,6 +22,3 @@ func set_text_and_resize(text):
 		VBox.rect_size.x += width -  bg.rect_size.x + 12
 		HBox.rect_size.x += width -  bg.rect_size.x + 12
 		bg.rect_size.x += width - bg.rect_size.x + 12
-		
-
-	

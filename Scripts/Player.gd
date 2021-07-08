@@ -122,7 +122,7 @@ func _on_UsableRange_body_entered(body):
 func _on_UsableRange_body_exited(body):
 	if "is_usable" in body and usable_objects.has(body):
 		usable_objects.erase(body)
-		emit_signal("player_usable_exited")#UI updates here
+		emit_signal("player_usable_exited", self)#UI updates here
 
 func _on_attack_animation_finish():
 	if state == States.ATTACKING:
@@ -138,7 +138,7 @@ func check_usables():
 		emit_signal("player_usable_entered", closest_object.usable_message)#, usable_object.usableMessage) #UI updates here
 		if Input.is_action_just_pressed("use"):
 			closest_object.use()
-			emit_signal("player_used")
+			emit_signal("player_used", self)
 			usable_objects.erase(closest_object)
 			
 

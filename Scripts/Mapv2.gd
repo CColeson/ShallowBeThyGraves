@@ -6,6 +6,7 @@ onready var ui_animator = $UI/Control/AnimationPlayer
 onready var spell_state_timer = $UI/Control/SpellSelector/StateTimer
 onready var item_state_timer = $UI/Control/ItemSelector/ItemStateTimer
 onready var action_label = $UI/Control/TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer/ActionContainer/ActionLabel
+onready var action_menu = $UI/Control/TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer/ActionContainer
 
 onready var player = find_node("Player", true, false)
 onready var lHP = $UI/Control/VBoxContainer/LabelHP
@@ -37,15 +38,22 @@ func _on_ItemStateTimer_timeout():
 func _on_player_usable_entered(message):
 	if message != null:
 		action_label.set_text_and_resize(message)
+		if (action_menu.modulate.a == 0):
+			play_animation("show_action_menu")
+		
 
-func _on_player_usable_exited():
+func _on_player_usable_exited(player):
 	action_label.text = ""
-
-func _on_player_used():
+	if (player.usable_objects.size() > 0 and action_menu.modulate.a > 0):
+		play_animation("hide_action_menu")
+	
+func _on_player_used(player):
 	action_label.text = ""
-
-
-
-
-
-
+	if (player.usable_objects.size() > 0 and action_menu.modulate.a > 0):
+		play_animation("hide_action_menu")
+	
+func play_animation(animation_name):
+	# stops multiple calls to the same animation
+	if ui_animator.current_animation != animation_name || ui_animator.current_animation != "":
+		ui_animator.play(animation_name)
+		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Tilesets/0x72_DungeonTilesetII_v1.4.png" type="Texture" id=2]
@@ -616,6 +616,22 @@ tracks/0/keys = {
 "values": [ Vector2( -289, 2 ), Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="Animation" id=36]
+resource_name = "hide_action_menu"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer/ActionContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
 [sub_resource type="Animation" id=28]
 length = 0.3
 tracks/0/type = "value"
@@ -682,13 +698,29 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -289, 0 ) ]
 }
 
-[sub_resource type="DynamicFont" id=35]
+[sub_resource type="Animation" id=37]
+resource_name = "show_action_menu"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("TopLeftUI/MarginContainer/VBoxContainer/HBoxContainer/ActionContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=30]
 size = 18
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 26 )
 
-[sub_resource type="StyleBoxFlat" id=30]
+[sub_resource type="StyleBoxFlat" id=31]
 bg_color = Color( 0.196078, 0.196078, 0.196078, 0.647059 )
 border_width_top = 2
 border_width_right = 2
@@ -697,20 +729,20 @@ corner_radius_top_right = 10
 expand_margin_left = 1.0
 expand_margin_right = 1.0
 
-[sub_resource type="StyleBoxFlat" id=31]
+[sub_resource type="StyleBoxFlat" id=32]
 bg_color = Color( 0.196078, 0.196078, 0.196078, 0.647059 )
 border_color = Color( 0, 0, 0, 0.643137 )
 corner_radius_top_left = 10
 expand_margin_left = 1.0
 expand_margin_right = 1.0
 
-[sub_resource type="Shader" id=32]
+[sub_resource type="Shader" id=33]
 
-[sub_resource type="ShaderMaterial" id=33]
+[sub_resource type="ShaderMaterial" id=34]
 render_priority = 1
-shader = SubResource( 32 )
+shader = SubResource( 33 )
 
-[sub_resource type="Environment" id=34]
+[sub_resource type="Environment" id=35]
 background_mode = 4
 tonemap_mode = 3
 auto_exposure_scale = 0.1
@@ -985,8 +1017,10 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Control"]
 anims/change_item = SubResource( 26 )
 anims/change_spell = SubResource( 27 )
+anims/hide_action_menu = SubResource( 36 )
 anims/hide_items = SubResource( 28 )
 anims/hide_spells = SubResource( 29 )
+anims/show_action_menu = SubResource( 37 )
 
 [node name="TopLeftUI" type="Control" parent="UI/Control"]
 margin_right = 568.0
@@ -1112,7 +1146,7 @@ margin_left = 12.0
 margin_top = 8.0
 margin_right = 385.0
 margin_bottom = 31.0
-custom_fonts/font = SubResource( 35 )
+custom_fonts/font = SubResource( 30 )
 text = "Press my ass"
 script = ExtResource( 29 )
 __meta__ = {
@@ -1157,7 +1191,7 @@ anchor_bottom = 1.0
 margin_top = 470.0
 margin_right = 288.0
 margin_bottom = 560.0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1210,14 +1244,6 @@ __meta__ = {
 wait_time = 5.0
 one_shot = true
 
-[node name="ActionLabel" type="Label" parent="UI/Control"]
-margin_right = 40.0
-margin_bottom = 14.0
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
-
 [node name="ItemSelector" type="Control" parent="UI/Control"]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -1242,7 +1268,7 @@ margin_top = -45.0
 margin_right = 144.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 288, 90 )
-custom_styles/panel = SubResource( 31 )
+custom_styles/panel = SubResource( 32 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1267,7 +1293,7 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="UI/Control/ItemSelector/HBoxContainer"]
-material = SubResource( 33 )
+material = SubResource( 34 )
 margin_right = 72.0
 margin_bottom = 72.0
 rect_min_size = Vector2( 72, 72 )
@@ -1346,7 +1372,7 @@ position = Vector2( 380, 136 )
 scale = Vector2( -1, 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 34 )
+environment = SubResource( 35 )
 
 [node name="EnemySpawners" type="Node" parent="."]
 
