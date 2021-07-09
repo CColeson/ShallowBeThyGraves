@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var path := PoolVector2Array() setget set_path
-var speed := 50
+var speed := 60
 var current_speed := speed
 var speed_in_torch_light := 30
 var HP = 150
@@ -23,10 +23,9 @@ func _physics_process(delta):
 		States.DEFAULT: state_default(delta)
 		States.DAMAGED: state_damaged()
 		
-	
 
 func state_default(delta):
-	var move_distance = speed * delta
+	var move_distance = current_speed * delta
 	var player = get_tree().get_current_scene().find_node("Player", true, true)
 	path = nav.get_simple_path(position, player.position)
 	var direction = position.direction_to(player.position)
