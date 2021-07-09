@@ -305,6 +305,7 @@ size_flags_vertical = 3
 custom_constants/margin_top = 14
 custom_constants/margin_left = 18
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
