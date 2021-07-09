@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Tilesets/0x72_DungeonTilesetII_v1.4.png" type="Texture" id=2]
@@ -8,7 +8,7 @@
 [ext_resource path="res://Scenes/Banners/BlueBanner.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Banners/GreenBanner.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Banners/YellowBanner.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/SkeletonEnemy.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/Mapv2.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/Skull.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Door.tscn" type="PackedScene" id=13]
@@ -536,10 +536,30 @@ points = PoolVector2Array( 16, 20, 0, 20, 0, 8, 16, 8 )
 } ]
 32/z_index = 0
 
-[sub_resource type="NavigationPolygon" id=25]
-vertices = PoolVector2Array( 119, 169, 174, 169, 175, 217, 117, 216 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
-outlines = [ PoolVector2Array( 119, 169, 174, 169, 175, 217, 117, 216 ) ]
+[sub_resource type="NavigationPolygon" id=27]
+vertices = PoolVector2Array( 104, 232, 100, 232, 100, 72, 124, 72, 192, 232, 140, 72, 168, 136, 168, 72, 292, 136, 260, 232, 292, 232 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5, 6 ), PoolIntArray( 5, 7, 6 ), PoolIntArray( 4, 6, 8, 9 ), PoolIntArray( 9, 8, 10 ) ]
+outlines = [ PoolVector2Array( 100, 232, 100, 72, 124, 72, 140, 72, 168, 72, 168, 136, 292, 136, 292, 232, 260, 232, 192, 232, 104, 232 ) ]
+
+[sub_resource type="NavigationPolygon" id=31]
+vertices = PoolVector2Array( 192, 232, 260, 232, 260, 252, 192, 396, 264, 252, 264, 384, 260, 384, 260, 400, 100, 436, 276, 400, 276, 396, 308, 396, 308, 436, 100, 396 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 2, 4, 5, 6 ), PoolIntArray( 3, 2, 6 ), PoolIntArray( 3, 6, 7, 8 ), PoolIntArray( 9, 10, 11, 12 ), PoolIntArray( 9, 12, 8, 7 ), PoolIntArray( 3, 8, 13 ) ]
+outlines = [ PoolVector2Array( 192, 232, 192, 396, 100, 396, 100, 436, 308, 436, 308, 396, 276, 396, 276, 400, 260, 400, 260, 384, 264, 384, 264, 252, 260, 252, 260, 232 ) ]
+
+[sub_resource type="NavigationPolygon" id=28]
+vertices = PoolVector2Array( 100, 72, 100, 88, 88, 88, 88, 160, -12, 160, -12, 100, -12, 84, 100, 36, -12, 36, 124, 72, 124, 64, 100, -4, 168, -4, 168, 72, 140, 64, 140, 72 )
+polygons = [ PoolIntArray( 0, 1, 2 ), PoolIntArray( 2, 3, 4, 5 ), PoolIntArray( 2, 5, 6, 7, 0 ), PoolIntArray( 6, 8, 7 ), PoolIntArray( 9, 0, 7, 10 ), PoolIntArray( 7, 11, 12, 13, 14 ), PoolIntArray( 13, 15, 14 ), PoolIntArray( 10, 7, 14 ) ]
+outlines = [ PoolVector2Array( 100, 72, 100, 88, 88, 88, 88, 160, -12, 160, -12, 100, -12, 84, -12, 36, 100, 36, 100, -4, 168, -4, 168, 72, 140, 72, 140, 64, 124, 64, 124, 72 ) ]
+
+[sub_resource type="NavigationPolygon" id=29]
+vertices = PoolVector2Array( -12, 36, -12, 84, -24, 84, -92, 36, -92, 104, -24, 100, -12, 100, -12, 160, -216, 160, -264, 120, -108, 104, -264, 132, -216, 280, -216, 316, -264, 316, -280, 132, -280, 136, -316, 136, -316, 112, -280, 112, -280, 120, -264, 96, -108, 96 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 3, 2, 5 ), PoolIntArray( 5, 6, 7, 8, 4 ), PoolIntArray( 9, 10, 4, 8, 11 ), PoolIntArray( 12, 13, 14, 11 ), PoolIntArray( 8, 12, 11 ), PoolIntArray( 15, 16, 17, 18 ), PoolIntArray( 18, 19, 20 ), PoolIntArray( 15, 18, 20, 11 ), PoolIntArray( 11, 20, 9 ), PoolIntArray( 9, 21, 22, 10 ) ]
+outlines = [ PoolVector2Array( -12, 36, -92, 36, -92, 104, -108, 104, -108, 96, -264, 96, -264, 120, -280, 120, -280, 112, -316, 112, -316, 136, -280, 136, -280, 132, -264, 132, -264, 316, -216, 316, -216, 280, -216, 160, -12, 160, -12, 100, -24, 100, -24, 84, -12, 84 ) ]
+
+[sub_resource type="NavigationPolygon" id=30]
+vertices = PoolVector2Array( -200, 280, -200, 272, -136, 272, -136, 280, -116, 280, -116, 272, -100, 272, -100, 316, -216, 316, -216, 280 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 5, 6, 7 ), PoolIntArray( 4, 7, 8, 3 ), PoolIntArray( 0, 3, 8 ), PoolIntArray( 9, 0, 8 ) ]
+outlines = [ PoolVector2Array( -216, 280, -216, 316, -100, 316, -100, 272, -116, 272, -116, 280, -136, 280, -136, 272, -200, 272, -200, 280 ) ]
 
 [sub_resource type="Environment" id=26]
 background_mode = 4
@@ -698,15 +718,6 @@ position = Vector2( -328, 112 )
 
 [node name="Banner8" parent="YSort/Walls" instance=ExtResource( 8 )]
 position = Vector2( -43, 52 )
-
-[node name="Enemy" parent="YSort" instance=ExtResource( 9 )]
-position = Vector2( 68, 228 )
-
-[node name="Enemy2" parent="YSort" instance=ExtResource( 9 )]
-position = Vector2( 52, 208 )
-
-[node name="Enemy3" parent="YSort" instance=ExtResource( 9 )]
-position = Vector2( 40, 220 )
 
 [node name="Pillars" type="YSort" parent="YSort"]
 
@@ -914,6 +925,8 @@ show_right_frame = false
 
 [node name="Door4" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 264, 468 )
+[node name="SkeletonEnemy" parent="YSort" instance=ExtResource( 9 )]
+position = Vector2( 40, 224 )
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
 __meta__ = {
@@ -922,10 +935,25 @@ __meta__ = {
 
 [node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
 position = Vector2( -92, 28 )
-navpoly = SubResource( 25 )
+navpoly = SubResource( 27 )
+
+[node name="NavigationPolygonInstance5" type="NavigationPolygonInstance" parent="Navigation2D"]
+position = Vector2( -92, 28 )
+navpoly = SubResource( 31 )
+
+[node name="NavigationPolygonInstance2" type="NavigationPolygonInstance" parent="Navigation2D"]
+position = Vector2( -92, 28 )
+navpoly = SubResource( 28 )
+
+[node name="NavigationPolygonInstance3" type="NavigationPolygonInstance" parent="Navigation2D"]
+position = Vector2( -92, 28 )
+navpoly = SubResource( 29 )
+
+[node name="NavigationPolygonInstance4" type="NavigationPolygonInstance" parent="Navigation2D"]
+position = Vector2( -92, 28 )
+navpoly = SubResource( 30 )
 
 [node name="UI" parent="." instance=ExtResource( 18 )]
-debug_show = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
