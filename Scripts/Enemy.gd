@@ -18,8 +18,8 @@ func _physics_process(delta):
 	match state:
 		States.DEFAULT:
 			var move_distance = current_speed * delta
-			var nav = get_tree().get_root().find_node("Navigation2D", true, false)
-			var player = get_tree().get_root().find_node("Player", true, false)
+			var nav = get_tree().get_current_scene().find_node("Navigation2D", true, false)
+			var player = get_tree().get_current_scene().find_node("Player", true, false)
 			path = nav.get_simple_path(global_position, player.global_position)
 			move_along_path(move_distance) #TODO UNCOMMENT THIS
 		States.DAMAGED:

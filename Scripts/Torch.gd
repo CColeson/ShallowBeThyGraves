@@ -15,6 +15,7 @@ func _ready():
 		use()
 
 func use(_caller = null):
+	$Timer.start()
 	$AnimatedSprite.play("used")
 	$AnimationPlayer.play("default")
 	$Light2D.enabled = true
@@ -30,3 +31,12 @@ func _on_SlowEnemyArea_body_entered(body):
 func _on_SlowEnemyArea_body_exited(body):
 	if body.has_method("on_torch_light_exit"):
 		body.on_torch_light_exit()
+
+func _on_Timer_timeout():
+	if !already_lit:
+		is_usable = true
+		$AnimatedSprite.play("default")
+		$AnimatedSprite.frame = 0
+		$AnimatedSprite.stop()
+		$SlowEnemyArea.monitoring = false
+		$Light2D.enabled = false
