@@ -14,9 +14,12 @@ onready var lHP = $Control/VBoxContainer/LabelHP
 onready var lStamina = $Control/VBoxContainer/LabelStamina
 
 onready var lRound = $Control/TopLeftUI/VBoxContainer/HBoxContainer/RoundContainer/RoundLabel
+export var debug_show = true
 
 func _ready():
 	ui_animator.play("hide_action_menu")
+	if !debug_show:
+		$Control.hide()
 
 func _process(delta):
 	lHP.text = "HP: " + str(player.health)

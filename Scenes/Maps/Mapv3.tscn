@@ -541,7 +541,7 @@ vertices = PoolVector2Array( 119, 169, 174, 169, 175, 217, 117, 216 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 outlines = [ PoolVector2Array( 119, 169, 174, 169, 175, 217, 117, 216 ) ]
 
-[sub_resource type="Environment" id=37]
+[sub_resource type="Environment" id=26]
 background_mode = 4
 tonemap_mode = 3
 auto_exposure_scale = 0.1
@@ -805,6 +805,7 @@ position = Vector2( -92, 28 )
 navpoly = SubResource( 25 )
 
 [node name="UI" parent="." instance=ExtResource( 18 )]
+debug_show = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.254902, 0.254902, 0.254902, 1 )
@@ -821,7 +822,7 @@ position = Vector2( 380, 136 )
 scale = Vector2( -1, 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 37 )
+environment = SubResource( 26 )
 
 [node name="EnemySpawners" type="Node" parent="."]
 
@@ -839,8 +840,8 @@ enabled = true
 modulate = Color( 2, 2, 2, 1 )
 position = Vector2( 183, 215 )
 
-[connection signal="round_start" from="RoundManager" to="RoundStartArea" method="_on_RoundManager_round_start"]
 [connection signal="round_start" from="RoundManager" to="YSort/Door/Connector" method="_on_RoundManager_round_start"]
+[connection signal="round_start" from="RoundManager" to="RoundStartArea" method="_on_RoundManager_round_start"]
 [connection signal="body_entered" from="RoundStartArea" to="RoundManager" method="_on_RoundStartArea_body_entered"]
 [connection signal="change_item" from="YSort/Player" to="UI" method="_on_Player_change_item"]
 [connection signal="change_spell" from="YSort/Player" to="UI" method="_on_Player_change_spell"]
