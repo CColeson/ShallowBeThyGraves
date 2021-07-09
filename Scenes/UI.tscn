@@ -1,0 +1,638 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Assets/Sprites/UI/ui-container-2.png" type="Texture" id=1]
+[ext_resource path="res://Resources/Fonts/UIFontBold.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Scenes/BloodDrops.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Sprites/container-3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/UI/mana-potion.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/UI.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Sprites/UI/ui-container.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/UI/health-potion.png" type="Texture" id=8]
+[ext_resource path="res://Resources/BloodAltarGraphics.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scripts/ActionLabel.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Fonts/CormorantUnicase-Regular.ttf" type="DynamicFontData" id=11]
+
+[sub_resource type="Animation" id=1]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("ItemSelector:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 148.0, -144.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ItemSelector:margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -48.0, -48.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ItemSelector:margin_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 148.0, -144.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ItemSelector:margin_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -48.0, -48.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpellSelector:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -292.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpellSelector:margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -564.0, -564.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpellSelector:margin_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -292.0, 0.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SpellSelector:margin_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -564.0, -564.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "hide_action_menu"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("TopLeftUI/VBoxContainer/HBoxContainer/ActionLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("ItemSelector:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -144.0, 148.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ItemSelector:margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -48.0, -48.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("ItemSelector:margin_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -144.0, 148.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ItemSelector:margin_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -48.0, -48.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpellSelector:margin_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -292.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpellSelector:margin_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -564.0, -564.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpellSelector:margin_right")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -292.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SpellSelector:margin_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -564.0, -564.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "show_action_menu"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("TopLeftUI/VBoxContainer/HBoxContainer/ActionLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=7]
+size = 18
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 11 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.196078, 0.196078, 0.196078, 0.647059 )
+border_width_top = 2
+border_width_right = 2
+border_color = Color( 0, 0, 0, 0.643137 )
+corner_radius_top_right = 10
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.196078, 0.196078, 0.196078, 0.647059 )
+border_color = Color( 0, 0, 0, 0.643137 )
+corner_radius_top_left = 10
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+
+[sub_resource type="Shader" id=10]
+
+[sub_resource type="ShaderMaterial" id=11]
+render_priority = 1
+shader = SubResource( 10 )
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource( 6 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
+anims/change_item = SubResource( 1 )
+anims/change_spell = SubResource( 2 )
+anims/hide_action_menu = SubResource( 3 )
+anims/hide_items = SubResource( 4 )
+anims/hide_spells = SubResource( 5 )
+anims/show_action_menu = SubResource( 6 )
+
+[node name="TopLeftUI" type="MarginContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -720.0
+margin_bottom = -524.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_top = 14
+custom_constants/margin_left = 18
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/TopLeftUI"]
+margin_left = 18.0
+margin_top = 14.0
+margin_right = 304.0
+margin_bottom = 76.0
+size_flags_horizontal = 3
+custom_constants/separation = 14
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/TopLeftUI/VBoxContainer"]
+margin_right = 286.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+custom_constants/separation = 22
+
+[node name="RoundContainer" type="NinePatchRect" parent="Control/TopLeftUI/VBoxContainer/HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 23, 23 )
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 6
+patch_margin_bottom = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RoundLabel" type="Label" parent="Control/TopLeftUI/VBoxContainer/HBoxContainer/RoundContainer"]
+modulate = Color( 0.466667, 0, 0, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -12.0
+margin_right = 12.0
+margin_bottom = 10.5
+grow_horizontal = 2
+custom_fonts/font = ExtResource( 2 )
+text = "100"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/TopLeftUI/VBoxContainer/HBoxContainer/RoundContainer"]
+show_behind_parent = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -15.0
+margin_top = -15.0
+margin_right = 15.0
+margin_bottom = 15.0
+texture = ExtResource( 4 )
+patch_margin_left = 3
+patch_margin_top = 2
+patch_margin_right = 3
+patch_margin_bottom = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActionLabel" type="Label" parent="Control/TopLeftUI/VBoxContainer/HBoxContainer"]
+margin_left = 62.0
+margin_top = 8.0
+margin_right = 276.0
+margin_bottom = 31.0
+custom_fonts/font = SubResource( 7 )
+text = "Press E to Light The Torch"
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionLabel"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -8.0
+margin_top = -7.0
+margin_right = 9.0
+margin_bottom = 8.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActionContainer" type="NinePatchRect" parent="Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionLabel/MarginContainer"]
+show_behind_parent = true
+margin_right = 231.0
+margin_bottom = 38.0
+rect_min_size = Vector2( 25, 22 )
+size_flags_horizontal = 3
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 40, 22 )
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/TopLeftUI/VBoxContainer/HBoxContainer/ActionLabel/MarginContainer/ActionContainer"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+texture = ExtResource( 4 )
+patch_margin_left = 3
+patch_margin_top = 2
+patch_margin_right = 3
+patch_margin_bottom = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BloodContainer" type="Control" parent="Control/TopLeftUI/VBoxContainer"]
+margin_top = 54.0
+margin_right = 286.0
+margin_bottom = 54.0
+
+[node name="Control" type="Control" parent="Control/TopLeftUI/VBoxContainer/BloodContainer"]
+margin_left = 13.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BloodDrops" parent="Control/TopLeftUI/VBoxContainer/BloodContainer/Control" instance=ExtResource( 3 )]
+scale = Vector2( 1.5, 1.5 )
+
+[node name="BloodLabel" type="Label" parent="Control/TopLeftUI/VBoxContainer/BloodContainer"]
+margin_left = 27.0
+margin_top = -10.0
+custom_fonts/font = ExtResource( 2 )
+text = "2600"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpellSelector" type="Control" parent="Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -292.0
+margin_top = -564.0
+margin_right = -292.0
+margin_bottom = -564.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Control/SpellSelector"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = 470.0
+margin_right = 288.0
+margin_bottom = 560.0
+custom_styles/panel = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StateTimer" type="Timer" parent="Control/SpellSelector"]
+wait_time = 5.0
+one_shot = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/SpellSelector"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 478.0
+margin_right = 274.0
+margin_bottom = 550.0
+custom_constants/separation = 24
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Control/SpellSelector/HBoxContainer"]
+margin_right = 72.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 72, 72 )
+texture = ExtResource( 1 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="Control/SpellSelector/HBoxContainer"]
+margin_left = 96.0
+margin_right = 168.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 72, 72 )
+texture = ExtResource( 1 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="Control/SpellSelector/HBoxContainer"]
+margin_left = 192.0
+margin_right = 264.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 72, 72 )
+texture = ExtResource( 1 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemSelector" type="Control" parent="Control"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 148.0
+margin_top = -48.0
+margin_right = 148.0
+margin_bottom = -48.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Control/ItemSelector"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -144.0
+margin_top = -45.0
+margin_right = 144.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 288, 90 )
+custom_styles/panel = SubResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemStateTimer" type="Timer" parent="Control/ItemSelector"]
+wait_time = 5.0
+one_shot = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/ItemSelector"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -132.0
+margin_top = -36.0
+margin_right = 132.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 264, 72 )
+custom_constants/separation = 24
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Control/ItemSelector/HBoxContainer"]
+material = SubResource( 11 )
+margin_right = 72.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 72, 72 )
+texture = ExtResource( 8 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="Control/ItemSelector/HBoxContainer"]
+margin_left = 96.0
+margin_right = 168.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 72, 72 )
+texture = ExtResource( 5 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect3" type="TextureRect" parent="Control/ItemSelector/HBoxContainer"]
+margin_left = 192.0
+margin_right = 264.0
+margin_bottom = 72.0
+rect_min_size = Vector2( 72, 72 )
+texture = ExtResource( 1 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Graphics" parent="Control/ItemSelector/HBoxContainer/TextureRect3" instance=ExtResource( 9 )]
+position = Vector2( 38, 38 )
+scale = Vector2( 2.6, 2.6 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -40.0
+margin_bottom = 40.0
+grow_horizontal = 0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="LabelHP" type="Label" parent="Control/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 14.0
+grow_horizontal = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelStamina" type="Label" parent="Control/VBoxContainer"]
+margin_top = 18.0
+margin_right = 40.0
+margin_bottom = 32.0
+grow_horizontal = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="timeout" from="Control/SpellSelector/StateTimer" to="." method="_on_StateTimer_timeout"]
+[connection signal="timeout" from="Control/ItemSelector/ItemStateTimer" to="." method="_on_ItemStateTimer_timeout"]

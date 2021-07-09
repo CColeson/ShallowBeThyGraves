@@ -7,7 +7,7 @@ signal player_usable_entered
 signal player_usable_exited
 signal player_used
 
-var move_speed = 80
+var move_speed = 65
 var roll_speed = 140
 var roll_stamina_cost = 20
 var attack_stamina_cost = 10
@@ -32,13 +32,12 @@ func _ready():
 	animator.active = true
 	$Graphics/SpellCaster.hide()
 	play_animation("original_state")
-	var root = get_tree().get_current_scene()
-	connect("player_usable_exited", root, "_on_player_usable_exited")
-	connect("player_usable_entered", root, "_on_player_usable_entered")
-	connect("player_used", root, "_on_player_used")
+	var UI = get_tree().get_current_scene().get_node("UI")
+	connect("player_usable_exited", UI, "_on_player_usable_exited")
+	connect("player_usable_entered", UI, "_on_player_usable_entered")
+	connect("player_used", UI, "_on_player_used")
 
 func _physics_process(_delta):
-	print(usable_objects)
 	match state:
 		States.DEFAULT : state_default()
 		States.ATTACKING : state_attacking()
@@ -123,6 +122,9 @@ func _on_UsableRange_body_entered(body):
 
 func _on_UsableRange_body_exited(body):
 	if "is_usable" in body and usable_objects.has(body):
+		if body.get_class() == "Door" and body.has_method("on_player_UsableRange_exit"):
+			#I hate this if statement, probably a much better way to do this, also the and clause is probably unneeded
+			body.on_player_UsableRange_exit()
 		usable_objects.erase(body)
 		emit_signal("player_usable_exited", self)#UI updates here
 
