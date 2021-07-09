@@ -1,49 +1,257 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_run_1.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_run_2.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_run_3.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_run_4.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_run_5.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Sprites/Skeleton/Attack/Skeleton1_attack_3.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Sprites/Skeleton/Attack/Skeleton1_attack_0.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Sprites/Skeleton/Attack/Skeleton1_attack_1.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_run_6.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_run_7.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Sprites/Skeleton/Attack/Skeleton1_attack_4.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Sprites/Skeleton/Attack/Skeleton1_attack_2.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_run_0.png" type="Texture" id=13]
-[ext_resource path="res://Assets/Sprites/Skeleton/Attack/Skeleton1_attack_5.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_outline_run_4.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Skeleton/Attack/Skeleton1_outline_attack_2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Skeleton/Attack/Skeleton1_outline_attack_0.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_outline_run_2.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Skeleton/Attack/Skeleton1_outline_attack_4.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_outline_run_1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_outline_run_6.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/Skeleton/Attack/Skeleton1_outline_attack_5.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/Skeleton/Attack/Skeleton1_outline_attack_1.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/Skeleton/Attack/Skeleton1_outline_attack_3.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_outline_run_0.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_outline_run_5.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_outline_run_7.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/Skeleton/Run/Skeleton1_outline_run_3.png" type="Texture" id=14]
 [ext_resource path="res://Scenes/SkeletonEnemy.gd" type="Script" id=15]
+[ext_resource path="res://Assets/Sprites/Skeleton/skeleton_outline_body.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Sprites/Skeleton/skeleton_outline_sword.png" type="Texture" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 13 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 10 ) ],
+"frames": [ ExtResource( 11 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 14 ), ExtResource( 1 ), ExtResource( 12 ), ExtResource( 7 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 6 ), ExtResource( 11 ), ExtResource( 14 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 10 ), ExtResource( 5 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "attack",
 "speed": 12.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 6, 2 )
+extents = Vector2( 6, 3 )
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 16.4924
 
+[sub_resource type="Animation" id=4]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/AnimatedSprite:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics/AnimatedSprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "attack" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Graphics/Body:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Graphics/AnimatedSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "attack_down"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/AnimatedSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics/Body:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Graphics/Body/Sword:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Graphics/Body/Sword:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1, 9 ), Vector2( 12, 8 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Graphics/Body/Sword:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -141.28, -219.106 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "attack_up"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Graphics/AnimatedSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Graphics/Body:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Graphics/Body/Sword:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Graphics/Body/Sword:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -7, -9 ), Vector2( 11, -6 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Graphics/Body/Sword:rotation_degrees")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -413.134, -320.018 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Graphics/Body/Sword:z_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ -1 ]
+}
+
 [node name="SkeletonEnemy" type="KinematicBody2D"]
 script = ExtResource( 15 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="Graphics" type="Node2D" parent="."]
 position = Vector2( 0, -9 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Graphics"]
 frames = SubResource( 1 )
-animation = "run"
-frame = 3
+animation = "attack"
+frame = 2
 playing = true
+
+[node name="Body" type="Sprite" parent="Graphics"]
+visible = false
+position = Vector2( -3, 9 )
+texture = ExtResource( 16 )
+
+[node name="Sword" type="Sprite" parent="Graphics/Body"]
+position = Vector2( -0.82949, -7.97158 )
+rotation = -6.65343
+z_index = -1
+texture = ExtResource( 17 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -2, 6 )
@@ -52,6 +260,12 @@ shape = SubResource( 2 )
 [node name="DamagedTimer" type="Timer" parent="."]
 
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/attack = SubResource( 4 )
+anims/attack_down = SubResource( 5 )
+anims/attack_up = SubResource( 6 )
