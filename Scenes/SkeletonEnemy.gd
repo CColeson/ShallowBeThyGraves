@@ -3,7 +3,7 @@ signal enemy_killed
 signal player_hit
 
 var path := PoolVector2Array() setget set_path
-var speed := 60
+var speed := 70
 var current_speed := speed
 var speed_in_torch_light := 30
 var HP = 150

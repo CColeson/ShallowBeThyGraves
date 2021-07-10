@@ -54,9 +54,9 @@ func _on_spawner_enemy_spawned(spawner):
 func _on_AutomaticSpawnTimer_timeout():
 	if enemies_on_map <= 0 and enemies_to_spawn > 0:
 		#find the timer with the closest time to zero
-		var shortest_timer = spawners[0].get_node("timer")
+		var shortest_timer = spawners[0].get_node("Timer")
 		for spawner in spawners:
-			var timer = spawner.get_node("timer")
-			if spawner.enabled and timer.time_left < shortest_timer. time_left:
+			var timer = spawner.get_node("Timer")
+			if spawner.enabled and timer.time_left < shortest_timer.time_left:
 				shortest_timer = timer
 		shortest_timer.start(0.1)

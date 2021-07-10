@@ -28,7 +28,10 @@ var state = States.DEFAULT
 onready var animator = $AnimationTree
 var usable_objects = []
 var attack_damage = 20 #TODO getter that multiplies by a skill
-var health = 100 #TODO getter that multiplies by a skill
+var max_health = 100 #TODO getter that multiplies by a skill
+var health = max_health
+var max_mana = 70
+var mana = 70
 var stamina = 50 #TODO getter that multiplies by a skill
 var stamina_regen_rate = 30#TODO regen that shit somehow
 var velocity := Vector2()
@@ -201,3 +204,8 @@ func _on_Enemy_player_hit(enemy):
 
 func get_class():
 	return "Player"
+
+
+func _on_RoundManager_postround_start():
+	health = max_health
+	mana = max_mana

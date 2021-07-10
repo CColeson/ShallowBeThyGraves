@@ -20,7 +20,6 @@ func set_spawn_interval(time):
 	$Timer.start(time)
 
 func _on_Timer_timeout():
-	print("enemy_spawned")
 	var new_enemy = enemy.instance()
 	enemy_parent.add_child(new_enemy)
 	new_enemy.global_position = self.global_position

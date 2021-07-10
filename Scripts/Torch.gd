@@ -14,13 +14,16 @@ func _ready():
 	if already_lit:
 		use()
 
-func use(_caller = null):
+func use(caller = null):
 	$Timer.start()
 	$AnimatedSprite.play("used")
 	$AnimationPlayer.play("default")
 	$Light2D.enabled = true
 	is_usable = false
 	$SlowEnemyArea.monitoring = true
+	if caller != null:
+		if "blood_fragments" in caller:
+			caller.blood_fragments += 5
 	return true
 
 func _on_SlowEnemyArea_body_entered(body):

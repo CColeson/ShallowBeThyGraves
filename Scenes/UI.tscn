@@ -115,7 +115,7 @@ tracks/3/keys = {
 "values": [ -564.0, -564.0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("ItemSelector:margin_left")
@@ -166,7 +166,7 @@ tracks/3/keys = {
 "values": [ -48.0, -48.0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("SpellSelector:margin_left")
@@ -217,7 +217,7 @@ tracks/3/keys = {
 "values": [ -564.0, -564.0 ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=5]
 resource_name = "hide_action_menu"
 length = 0.3
 tracks/0/type = "value"
@@ -233,7 +233,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=6]
 resource_name = "show_action_menu"
 length = 0.3
 tracks/0/type = "value"
@@ -249,7 +249,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=7]
 resource_name = "round_announce"
 length = 3.5
 tracks/0/type = "value"
@@ -277,13 +277,13 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=8]
 size = 18
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 11 )
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.196078, 0.196078, 0.196078, 0.647059 )
 border_width_top = 2
 border_width_right = 2
@@ -292,20 +292,20 @@ corner_radius_top_right = 10
 expand_margin_left = 1.0
 expand_margin_right = 1.0
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0.196078, 0.196078, 0.196078, 0.647059 )
 border_color = Color( 0, 0, 0, 0.643137 )
 corner_radius_top_left = 10
 expand_margin_left = 1.0
 expand_margin_right = 1.0
 
-[sub_resource type="Shader" id=10]
+[sub_resource type="Shader" id=11]
 
-[sub_resource type="ShaderMaterial" id=11]
+[sub_resource type="ShaderMaterial" id=12]
 render_priority = 1
-shader = SubResource( 10 )
+shader = SubResource( 11 )
 
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=13]
 size = 63
 outline_size = 7
 font_data = ExtResource( 11 )
@@ -324,15 +324,15 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
 anims/change_item = SubResource( 1 )
 anims/change_spell = SubResource( 2 )
-anims/hide_items = SubResource( 4 )
-anims/hide_spells = SubResource( 5 )
+anims/hide_items = SubResource( 3 )
+anims/hide_spells = SubResource( 4 )
 
 [node name="ActionMenuAnimator" type="AnimationPlayer" parent="Control"]
-anims/hide_action_menu = SubResource( 17 )
-anims/show_action_menu = SubResource( 21 )
+anims/hide_action_menu = SubResource( 5 )
+anims/show_action_menu = SubResource( 6 )
 
 [node name="RoundAnnounceAnimationPlayer" type="AnimationPlayer" parent="Control"]
-anims/round_announce = SubResource( 14 )
+anims/round_announce = SubResource( 7 )
 
 [node name="TopLeftUI" type="MarginContainer" parent="Control"]
 anchor_right = 1.0
@@ -420,7 +420,7 @@ margin_left = 62.0
 margin_top = 8.0
 margin_right = 276.0
 margin_bottom = 31.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 text = "Press E to Light The Torch"
 script = ExtResource( 10 )
 __meta__ = {
@@ -509,7 +509,7 @@ anchor_bottom = 1.0
 margin_top = 470.0
 margin_right = 288.0
 margin_bottom = 560.0
-custom_styles/panel = SubResource( 8 )
+custom_styles/panel = SubResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -586,7 +586,7 @@ margin_top = -45.0
 margin_right = 144.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 288, 90 )
-custom_styles/panel = SubResource( 9 )
+custom_styles/panel = SubResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -611,7 +611,7 @@ __meta__ = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="Control/ItemSelector/HBoxContainer"]
-material = SubResource( 11 )
+material = SubResource( 12 )
 margin_right = 72.0
 margin_bottom = 72.0
 rect_min_size = Vector2( 72, 72 )
@@ -687,7 +687,7 @@ margin_right = 104.0
 margin_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -784,7 +784,7 @@ margin_right = 104.0
 margin_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
