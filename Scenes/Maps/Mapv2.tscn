@@ -9,6 +9,7 @@
 [ext_resource path="res://Scenes/ExperiencePoint.tscn" type="PackedScene" id=8]
 
 
+
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 23, 258, 23, 34, 215, 34, 215, 194, 311, 258, 247, 194, 311, 34, 247, 34 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 0, 3, 5 ), PoolIntArray( 6, 4, 5, 7 ) ]

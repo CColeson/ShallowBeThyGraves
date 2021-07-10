@@ -1,9 +1,10 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://Assets/Tilesets/0x72_16x16DungeonTileset.v4.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Tilesets/0x72_DungeonTilesetII_v1.4.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/light.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/ZoomingCamera.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 2 )
@@ -436,7 +437,7 @@ tracks/1/keys = {
 radius = 31.0
 
 [sub_resource type="RectangleShape2D" id=38]
-extents = Vector2( 15, 15 )
+extents = Vector2( 7, 15 )
 
 [sub_resource type="RectangleShape2D" id=39]
 extents = Vector2( 14, 9 )
@@ -446,6 +447,9 @@ extents = Vector2( 14, 9 )
 
 [sub_resource type="CircleShape2D" id=41]
 radius = 12.0
+
+[sub_resource type="RectangleShape2D" id=42]
+extents = Vector2( 6, 8 )
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -508,32 +512,32 @@ __meta__ = {
 }
 
 [node name="SideMeleeDamageArea" type="Area2D" parent="."]
-visible = false
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SideMeleeDamageArea"]
-position = Vector2( 17, -1 )
+visible = false
+position = Vector2( 12, 0 )
 shape = SubResource( 38 )
 
 [node name="TopMeleeDamageArea" type="Area2D" parent="."]
-visible = false
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopMeleeDamageArea"]
+visible = false
 position = Vector2( 0, -10 )
 shape = SubResource( 39 )
 
 [node name="BottomMeleeDamageArea" type="Area2D" parent="."]
-visible = false
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomMeleeDamageArea"]
+visible = false
 position = Vector2( 0, 13 )
 shape = SubResource( 40 )
 
@@ -561,6 +565,23 @@ shadow_enabled = true
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.4, 0.4 )
+smoothing_enabled = true
+smoothing_speed = 6.0
+script = ExtResource( 5 )
+
+[node name="Tween" type="Tween" parent="Camera2D"]
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 1, 1 )
+shape = SubResource( 42 )
+
+[node name="DamagedTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="UsableRange" to="." method="_on_UsableRange_body_entered"]
 [connection signal="body_exited" from="UsableRange" to="." method="_on_UsableRange_body_exited"]

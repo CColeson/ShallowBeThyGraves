@@ -6,6 +6,12 @@ signal change_item
 signal player_usable_entered
 signal player_usable_exited
 signal player_used
+signal player_death
+
+const DAMAGE_SPEED = 350
+const DAMAGE_DISTANCE = 25 #Distance to travel after being damaged
+var damaged_position = null # our position before taking damage
+var attacker_position = null
 
 var move_speed = 65
 var roll_speed = 140
@@ -17,11 +23,11 @@ var attributes = {
 	"strength" : 1,
 	"conviction" : 1
 }
-enum States {DEFAULT, ATTACKING, ROLLING, SPELLCASTING}
+enum States {DEFAULT, ATTACKING, ROLLING, SPELLCASTING, DAMAGED, DEATH}
 var state = States.DEFAULT
 onready var animator = $AnimationTree
 var usable_objects = []
-var attackDamage = 50 #TODO getter that multiplies by a skill
+var attack_damage = 20 #TODO getter that multiplies by a skill
 var health = 100 #TODO getter that multiplies by a skill
 var stamina = 50 #TODO getter that multiplies by a skill
 var stamina_regen_rate = 30#TODO regen that shit somehow
@@ -36,12 +42,19 @@ func _ready():
 	connect("player_usable_exited", UI, "_on_player_usable_exited")
 	connect("player_usable_entered", UI, "_on_player_usable_entered")
 	connect("player_used", UI, "_on_player_used")
+	connect("change_spell", UI, "_on_Player_change_spell")
+	connect("change_item", UI, "_on_Player_change_item")
 
 func _physics_process(_delta):
 	match state:
 		States.DEFAULT : state_default()
 		States.ATTACKING : state_attacking()
 		States.ROLLING : state_rolling()
+		States.DAMAGED : state_damaged()
+		States.DEATH : state_death()
+
+func state_death():
+	move_and_slide(Vector2.ZERO)
 
 func state_default():
 	stamina = 50 #TODO: get rid of this, make stamina regeneration
@@ -98,6 +111,19 @@ func state_attacking():
 func state_rolling():
 	play_animation("roll")
 	move_and_slide(velocity.normalized() * roll_speed)
+	
+func state_damaged():
+	if damaged_position != null:
+		if position.distance_to(damaged_position) < DAMAGE_DISTANCE and $DamagedTimer.time_left > 0:
+			var direction = position.angle_to_point(attacker_position)
+			var y = DAMAGE_SPEED * sin(direction)
+			var x = DAMAGE_SPEED * cos(direction)
+			var velocity = Vector2(x, y)
+			move_and_slide(velocity)
+		elif health > 0:
+			state = States.DEFAULT
+		else:
+			state = States.DEATH
 
 func flip_if_needed(vec):
 	#why does this function feel so dirty
@@ -161,6 +187,17 @@ func _on_PickupRange_area_entered(area):
 	var parent = area.get_parent()
 	if parent.has_method("pickup"):
 		parent.pickup(self)
+
+func _on_Enemy_player_hit(enemy):
+	if state != States.DAMAGED and state != States.DEATH:
+		health -= enemy.attack_damage
+		attacker_position = enemy.position
+		damaged_position = position
+		state = States.DAMAGED
+		$DamagedTimer.start(0.3)
+		if health <= 0:
+			emit_signal("player_death", self)
+			$CollisionShape2D.disabled = true
 
 func get_class():
 	return "Player"

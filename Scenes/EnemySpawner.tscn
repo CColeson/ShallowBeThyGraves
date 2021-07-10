@@ -13,3 +13,8 @@ script = ExtResource( 3 )
 texture = ExtResource( 2 )
 texture_scale = 0.3
 energy = 0.7
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

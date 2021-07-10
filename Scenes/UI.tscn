@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Assets/Sprites/UI/ui-container-2.png" type="Texture" id=1]
 [ext_resource path="res://Resources/Fonts/UIFontBold.tres" type="DynamicFont" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Resources/BloodAltarGraphics.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/ActionLabel.gd" type="Script" id=10]
 [ext_resource path="res://Assets/Fonts/CormorantUnicase-Regular.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://Assets/Sprites/blood-spatter.png" type="Texture" id=12]
 
 [sub_resource type="Animation" id=1]
 length = 0.3
@@ -112,22 +113,6 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ -564.0, -564.0 ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "hide_action_menu"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath("TopLeftUI/VBoxContainer/HBoxContainer/ActionLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -232,7 +217,23 @@ tracks/3/keys = {
 "values": [ -564.0, -564.0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=17]
+resource_name = "hide_action_menu"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("TopLeftUI/VBoxContainer/HBoxContainer/ActionLabel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=21]
 resource_name = "show_action_menu"
 length = 0.3
 tracks/0/type = "value"
@@ -246,6 +247,34 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=14]
+resource_name = "round_announce"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("RoundAnnouncer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("RoundAnnouncer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="DynamicFont" id=7]
@@ -276,6 +305,11 @@ expand_margin_right = 1.0
 render_priority = 1
 shader = SubResource( 10 )
 
+[sub_resource type="DynamicFont" id=12]
+size = 63
+outline_size = 7
+font_data = ExtResource( 11 )
+
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 6 )
 
@@ -290,10 +324,15 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
 anims/change_item = SubResource( 1 )
 anims/change_spell = SubResource( 2 )
-anims/hide_action_menu = SubResource( 3 )
 anims/hide_items = SubResource( 4 )
 anims/hide_spells = SubResource( 5 )
-anims/show_action_menu = SubResource( 6 )
+
+[node name="ActionMenuAnimator" type="AnimationPlayer" parent="Control"]
+anims/hide_action_menu = SubResource( 17 )
+anims/show_action_menu = SubResource( 21 )
+
+[node name="RoundAnnounceAnimationPlayer" type="AnimationPlayer" parent="Control"]
+anims/round_announce = SubResource( 14 )
 
 [node name="TopLeftUI" type="MarginContainer" parent="Control"]
 anchor_right = 1.0
@@ -376,6 +415,7 @@ __meta__ = {
 }
 
 [node name="ActionLabel" type="Label" parent="Control/TopLeftUI/VBoxContainer/HBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
 margin_left = 62.0
 margin_top = 8.0
 margin_right = 276.0
@@ -634,6 +674,200 @@ grow_horizontal = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="RoundAnnouncer" type="Label" parent="Control"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -102.0
+margin_top = -7.0
+margin_right = 104.0
+margin_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Round 1"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/RoundAnnouncer"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = -40
+custom_constants/margin_top = -39
+custom_constants/margin_left = -40
+custom_constants/margin_bottom = -39
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/RoundAnnouncer/MarginContainer"]
+margin_left = -40.0
+margin_top = -39.0
+margin_right = 268.0
+margin_bottom = 117.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+
+[node name="Background" type="NinePatchRect" parent="Control/RoundAnnouncer/MarginContainer/NinePatchRect"]
+modulate = Color( 0.423529, 0, 0, 1 )
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 4 )
+patch_margin_left = 3
+patch_margin_top = 2
+patch_margin_right = 3
+patch_margin_bottom = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Control/RoundAnnouncer/MarginContainer/NinePatchRect"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -38.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/RoundAnnouncer/MarginContainer/NinePatchRect/Control"]
+modulate = Color( 6.36, 0, 0, 1 )
+scale = Vector2( -2, 2 )
+texture = ExtResource( 12 )
+region_rect = Rect2( 224, 112, 32, 32 )
+
+[node name="Control2" type="Control" parent="Control/RoundAnnouncer/MarginContainer/NinePatchRect"]
+margin_left = 44.0
+margin_top = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="Control/RoundAnnouncer/MarginContainer/NinePatchRect/Control2"]
+modulate = Color( 6.36, 0, 0, 1 )
+position = Vector2( -6, 54 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+region_rect = Rect2( 160, 112, 32, 31 )
+
+[node name="RoundCompleteAnnouncer" type="Label" parent="Control"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -102.0
+margin_top = -7.0
+margin_right = 104.0
+margin_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Round Complete!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/RoundCompleteAnnouncer"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = -40
+custom_constants/margin_top = -39
+custom_constants/margin_left = -40
+custom_constants/margin_bottom = -39
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/RoundCompleteAnnouncer/MarginContainer"]
+margin_left = -40.0
+margin_top = -39.0
+margin_right = 534.0
+margin_bottom = 117.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 1 )
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+
+[node name="Background" type="NinePatchRect" parent="Control/RoundCompleteAnnouncer/MarginContainer/NinePatchRect"]
+modulate = Color( 0.423529, 0, 0, 1 )
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 4 )
+patch_margin_left = 3
+patch_margin_top = 2
+patch_margin_right = 3
+patch_margin_bottom = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="Control/RoundCompleteAnnouncer/MarginContainer/NinePatchRect"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -64.0
+margin_top = -38.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Control/RoundCompleteAnnouncer/MarginContainer/NinePatchRect/Control"]
+modulate = Color( 6.36, 0, 0, 1 )
+scale = Vector2( -2, 2 )
+texture = ExtResource( 12 )
+region_rect = Rect2( 224, 112, 32, 32 )
+
+[node name="Control2" type="Control" parent="Control/RoundCompleteAnnouncer/MarginContainer/NinePatchRect"]
+margin_left = 44.0
+margin_top = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="Control/RoundCompleteAnnouncer/MarginContainer/NinePatchRect/Control2"]
+modulate = Color( 6.36, 0, 0, 1 )
+position = Vector2( -6, 54 )
+rotation = 1.5708
+scale = Vector2( 2, 2 )
+texture = ExtResource( 12 )
+region_rect = Rect2( 160, 112, 32, 31 )
 
 [connection signal="timeout" from="Control/SpellSelector/StateTimer" to="." method="_on_StateTimer_timeout"]
 [connection signal="timeout" from="Control/ItemSelector/ItemStateTimer" to="." method="_on_ItemStateTimer_timeout"]

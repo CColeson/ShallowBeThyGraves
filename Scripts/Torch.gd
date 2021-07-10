@@ -3,7 +3,7 @@ extends StaticBody2D
 export var usable_distance = 30
 var usable_message = "Press E to light the torch"
 export var is_usable = true
-export var already_lit = false
+export var already_lit = false #Light the torch on round_start and flame never dies
 
 func _ready():
 	$AnimatedSprite.play("default")

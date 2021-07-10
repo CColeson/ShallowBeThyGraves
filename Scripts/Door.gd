@@ -30,7 +30,6 @@ func use(caller):
 		$OpenOccluder.visible = true
 		$OpenOccluder2.visible = true
 		is_usable = false
-		
 		var map_connector = get_node_or_null("Connector")
 		#Considering doors can be used to trigger a multitude of events
 		#childing a plain Node and controlling other scene elements from there
@@ -58,3 +57,14 @@ func on_player_UsableRange_exit():
 
 func get_class():
 	return "Door"
+
+func open():
+	usable_message = original_usable_message
+	is_closed = false
+	$Closed.visible = false
+	$Open.visible = true
+	$ClosedCollision.disabled = true
+	$ClosedOccluder.visible = false
+	$OpenOccluder.visible = true
+	$OpenOccluder2.visible = true
+	is_usable = false

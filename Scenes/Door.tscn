@@ -7,7 +7,7 @@
 extents = Vector2( 7, 6 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 18, 13 )
+extents = Vector2( 18, 9 )
 
 [sub_resource type="OccluderPolygon2D" id=3]
 polygon = PoolVector2Array( -32, -10, -16, -10, -16, -18, -9, -26, 0, -27, 9, -26, 16, -18, 16, -10, 32, -10, 32, -15, 20, -15, 20, -19, 13, -27, 0, -30, -13, -27, -20, -19, -20, -15, -32, -15 )
@@ -67,7 +67,7 @@ position = Vector2( 25, 10 )
 shape = SubResource( 1 )
 
 [node name="ClosedCollision" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 3 )
+position = Vector2( 0, 7 )
 shape = SubResource( 2 )
 
 [node name="ClosedOccluder" type="LightOccluder2D" parent="."]

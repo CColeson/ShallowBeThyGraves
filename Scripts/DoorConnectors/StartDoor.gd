@@ -1,17 +1,23 @@
 extends Node
-signal start_door_open
 
-onready var global = get_node("/root/Global")
+onready var round_manager = get_tree().get_current_scene().get_node("RoundManager")
+onready var parent = get_parent()
 
 func use():
 	pass
 
 func _on_RoundStartArea_body_entered(body):
-	var parent = get_parent()
-	if !parent.is_closed and global.game_state != global.game_states.POSTROUND and body.get_class() == "Player":
+	if !parent.is_closed and round_manager.game_state != round_manager.game_states.POSTROUND and body.get_class() == "Player":
 		parent.close(false)
 
 
 func _on_RoundManager_round_start():
-	var parent = get_parent()
 	parent.close(false)
+
+
+func _on_RoundManager_postround_start():
+	parent.open()
+
+
+func _on_RoundManager_preround_start():
+	parent.close(true)
