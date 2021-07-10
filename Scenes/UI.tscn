@@ -309,7 +309,7 @@ expand_margin_right = 1.0
 render_priority = 1
 shader = SubResource( 11 )
 
-[sub_resource type="StyleBoxFlat" id=14]
+[sub_resource type="StyleBoxFlat" id=13]
 bg_color = Color( 0.756863, 0, 0, 1 )
 corner_radius_top_left = 100
 corner_radius_top_right = 100
@@ -317,7 +317,7 @@ corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
 anti_aliasing = false
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=14]
 size = 63
 outline_size = 7
 font_data = ExtResource( 11 )
@@ -542,7 +542,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="Control/SpellSelector/HBoxContainer"]
+[node name="Fireball" type="TextureRect" parent="Control/SpellSelector/HBoxContainer"]
+modulate = Color( 0.360784, 0.360784, 0.360784, 1 )
 margin_right = 72.0
 margin_bottom = 72.0
 rect_min_size = Vector2( 72, 72 )
@@ -552,10 +553,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FireballUIGraphics" parent="Control/SpellSelector/HBoxContainer/TextureRect" instance=ExtResource( 14 )]
+[node name="Fireball" parent="Control/SpellSelector/HBoxContainer/Fireball" instance=ExtResource( 14 )]
 position = Vector2( 34, 29 )
 
-[node name="TextureRect2" type="TextureRect" parent="Control/SpellSelector/HBoxContainer"]
+[node name="Vampiric_Feast" type="TextureRect" parent="Control/SpellSelector/HBoxContainer"]
+modulate = Color( 0.360784, 0.360784, 0.360784, 1 )
 margin_left = 96.0
 margin_right = 168.0
 margin_bottom = 72.0
@@ -566,12 +568,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VampiricUIGraphics" parent="Control/SpellSelector/HBoxContainer/TextureRect2" instance=ExtResource( 15 )]
+[node name="Vampiric_Feast" parent="Control/SpellSelector/HBoxContainer/Vampiric_Feast" instance=ExtResource( 15 )]
 position = Vector2( 35, 36 )
 rotation = 0.72892
 scale = Vector2( 1.55556, 1.3 )
 
-[node name="TextureRect3" type="TextureRect" parent="Control/SpellSelector/HBoxContainer"]
+[node name="Vengeful_Gods_Last_Regret" type="TextureRect" parent="Control/SpellSelector/HBoxContainer"]
+modulate = Color( 0.360784, 0.360784, 0.360784, 1 )
 margin_left = 192.0
 margin_right = 264.0
 margin_bottom = 72.0
@@ -582,8 +585,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RegretUIGraphics" parent="Control/SpellSelector/HBoxContainer/TextureRect3" instance=ExtResource( 16 )]
-modulate = Color( 7.52, 4.07, 24.28, 1 )
+[node name="Vengeful_Gods_Last_Regret" parent="Control/SpellSelector/HBoxContainer/Vengeful_Gods_Last_Regret" instance=ExtResource( 16 )]
 position = Vector2( 35, 36 )
 scale = Vector2( 2.0625, 2.125 )
 
@@ -667,7 +669,7 @@ __meta__ = {
 [node name="HPQuant" type="Panel" parent="Control/ItemSelector/HBoxContainer/TextureRect"]
 margin_right = 16.0
 margin_bottom = 16.0
-custom_styles/panel = SubResource( 14 )
+custom_styles/panel = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -722,7 +724,7 @@ __meta__ = {
 [node name="ManaQuant" type="Panel" parent="Control/ItemSelector/HBoxContainer/TextureRect2"]
 margin_right = 16.0
 margin_bottom = 16.0
-custom_styles/panel = SubResource( 14 )
+custom_styles/panel = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -783,7 +785,7 @@ __meta__ = {
 [node name="AltQuant" type="Panel" parent="Control/ItemSelector/HBoxContainer/TextureRect3"]
 margin_right = 16.0
 margin_bottom = 16.0
-custom_styles/panel = SubResource( 14 )
+custom_styles/panel = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -847,7 +849,7 @@ margin_right = 104.0
 margin_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
@@ -944,7 +946,7 @@ margin_right = 104.0
 margin_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )

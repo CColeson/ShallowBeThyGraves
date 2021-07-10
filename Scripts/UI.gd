@@ -21,6 +21,9 @@ onready var altselect_mod = Color("#565656")
 onready var manapotlabel = $Control/ItemSelector/HBoxContainer/TextureRect2/ManaQuant/Label
 onready var healthpotlabel = $Control/ItemSelector/HBoxContainer/TextureRect/HPQuant/Label
 
+const UNSELECTED_COLOR = "#5c5c5c"
+const SELECTED_COLOR = "#ffffff" #TODO
+
 func _ready():
 	action_menu_animator.play("hide_action_menu")
 	if !debug_show:
@@ -34,6 +37,8 @@ func _process(_delta):
 	blood_label.text = str(player.blood_fragments)
 	manapotlabel.text = str(player.mana_potions)
 	healthpotlabel.text = str(player.health_potions)
+	#if player.selected_spell != null: TODO
+	#	get_node("Control/SpellSelector/HBoxContainer/" + player.selected_spell+"/" + player.selected_spell).modulate
 	
 
 func _on_Player_change_spell():

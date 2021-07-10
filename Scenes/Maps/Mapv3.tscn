@@ -1629,13 +1629,13 @@ spell_name = "Vampiric_Feast"
 position = Vector2( -284, -80 )
 spell_name = "Vengeful_Gods_Last_Regret"
 
-[connection signal="postround_start" from="RoundManager" to="UI" method="_on_RoundManager_postround_start"]
 [connection signal="postround_start" from="RoundManager" to="YSort/StartDoor/Connector" method="_on_RoundManager_postround_start"]
+[connection signal="postround_start" from="RoundManager" to="UI" method="_on_RoundManager_postround_start"]
 [connection signal="postround_start" from="RoundManager" to="YSort/Player" method="_on_RoundManager_postround_start"]
 [connection signal="preround_start" from="RoundManager" to="YSort/StartDoor/Connector" method="_on_RoundManager_preround_start"]
-[connection signal="round_start" from="RoundManager" to="UI" method="_on_RoundManager_round_start"]
-[connection signal="round_start" from="RoundManager" to="YSort/StartDoor/Connector" method="_on_RoundManager_round_start"]
 [connection signal="round_start" from="RoundManager" to="EnemySpawnsManager" method="_on_RoundManager_round_start"]
+[connection signal="round_start" from="RoundManager" to="YSort/StartDoor/Connector" method="_on_RoundManager_round_start"]
+[connection signal="round_start" from="RoundManager" to="UI" method="_on_RoundManager_round_start"]
 [connection signal="round_start" from="RoundManager" to="RoundStartArea" method="_on_RoundManager_round_start"]
 [connection signal="timeout" from="RoundManager/BetweenRoundTimer" to="RoundManager" method="_on_BetweenRoundTimer_timeout"]
 [connection signal="body_entered" from="RoundStartArea" to="RoundManager" method="_on_RoundStartArea_body_entered"]
