@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Tilesets/0x72_DungeonTilesetII_v1.4.png" type="Texture" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Scripts/DoorConnectors/StartDoor.gd" type="Script" id=23]
 [ext_resource path="res://Scripts/RoundStartArea.gd" type="Script" id=24]
 [ext_resource path="res://Scripts/DoorConnectors/Door7Connector.gd" type="Script" id=25]
+[ext_resource path="res://Scenes/SpellPickup.tscn" type="PackedScene" id=26]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 35, 24 )
@@ -689,9 +690,9 @@ polygons = [ PoolIntArray( 0, 1, 2, 3, 4, 5, 6 ), PoolIntArray( 0, 7, 8, 1 ), Po
 outlines = [ PoolVector2Array( -204, -40, -172, -40, -172, -64, -113, -64, -113, -120, -157, -120, -156, -164, -213, -164, -225, -160, -225, -120, -269, -120, -269, -64, -204, -64 ) ]
 
 [sub_resource type="NavigationPolygon" id=48]
-vertices = PoolVector2Array( -12, 40, -12, 84, -24, 84, -16, 40, -40, 40, -92, 100, -24, 100, -12, 100, -12, 156, -220, 156, -220, 280, -220, 316, -264, 316, -264, 136, -260, 120, -280, 136, -316, 136, -316, 112, -280, 120, -280, 112, -272, 136, -260, 100, -92, 40 )
-polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 3, 2, 5 ), PoolIntArray( 6, 7, 8, 9 ), PoolIntArray( 10, 11, 12, 13 ), PoolIntArray( 9, 10, 13, 14 ), PoolIntArray( 15, 16, 17, 18 ), PoolIntArray( 17, 19, 18 ), PoolIntArray( 20, 15, 18, 14 ), PoolIntArray( 13, 20, 14 ), PoolIntArray( 14, 21, 5, 9 ), PoolIntArray( 5, 22, 4 ), PoolIntArray( 5, 2, 6, 9 ) ]
-outlines = [ PoolVector2Array( -12, 40, -16, 40, -40, 40, -92, 40, -92, 100, -260, 100, -260, 120, -280, 120, -280, 112, -316, 112, -316, 136, -280, 136, -272, 136, -264, 136, -264, 316, -220, 316, -220, 280, -220, 156, -12, 156, -12, 100, -24, 100, -24, 84, -12, 84 ) ]
+vertices = PoolVector2Array( -88, 103, -89, 40, -40, 40, -24, 84, -24, 100, -12, 40, -12, 84, -16, 40, -12, 100, -12, 156, -220, 156, -260, 103, -260, 120, -220, 280, -220, 316, -264, 316, -264, 136, -280, 120, -272, 136, -280, 136, -316, 136, -316, 112, -280, 112 )
+polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 5, 6, 3, 7 ), PoolIntArray( 2, 7, 3 ), PoolIntArray( 4, 8, 9, 10, 0 ), PoolIntArray( 11, 0, 10, 12 ), PoolIntArray( 13, 14, 15, 16 ), PoolIntArray( 10, 13, 16, 12 ), PoolIntArray( 17, 12, 16, 18 ), PoolIntArray( 17, 18, 19 ), PoolIntArray( 17, 19, 20, 21 ), PoolIntArray( 17, 21, 22 ) ]
+outlines = [ PoolVector2Array( -12, 40, -16, 40, -40, 40, -89, 40, -88, 103, -260, 103, -260, 120, -280, 120, -280, 112, -316, 112, -316, 136, -280, 136, -272, 136, -264, 136, -264, 316, -220, 316, -220, 280, -220, 156, -12, 156, -12, 100, -24, 100, -24, 84, -12, 84 ) ]
 
 [sub_resource type="NavigationPolygon" id=49]
 vertices = PoolVector2Array( -200, 280, -112, 280, -72, 280, 36, 280, 56, 280, 56, 316, -220, 316, -220, 280 )
@@ -1315,7 +1316,6 @@ navpoly = SubResource( 51 )
 enabled = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color( 0.254902, 0.254902, 0.254902, 1 )
 
 [node name="FloorDecorations" type="Node" parent="."]
@@ -1617,6 +1617,17 @@ position = Vector2( 88, 88 )
 [node name="Room4_Spawner4" parent="EnemySpawnsManager/Spawners" instance=ExtResource( 16 )]
 modulate = Color( 2, 2, 2, 1 )
 position = Vector2( 623.354, -76.325 )
+
+[node name="SpellPickup" parent="." instance=ExtResource( 26 )]
+position = Vector2( -184, 240 )
+
+[node name="SpellPickup2" parent="." instance=ExtResource( 26 )]
+position = Vector2( 592, 368 )
+spell_name = "Vampiric_Feast"
+
+[node name="SpellPickup3" parent="." instance=ExtResource( 26 )]
+position = Vector2( -284, -80 )
+spell_name = "Vengeful_Gods_Last_Regret"
 
 [connection signal="postround_start" from="RoundManager" to="UI" method="_on_RoundManager_postround_start"]
 [connection signal="postround_start" from="RoundManager" to="YSort/StartDoor/Connector" method="_on_RoundManager_postround_start"]

@@ -36,6 +36,11 @@ animations = [ {
 "name": "attack_charge",
 "speed": 30.0
 }, {
+"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 19 ) ],
+"loop": true,
+"name": "attack_down",
+"speed": 12.0
+}, {
 "frames": [ ExtResource( 3 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 10 ), ExtResource( 5 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "attack",
@@ -45,14 +50,9 @@ animations = [ {
 "loop": true,
 "name": "run",
 "speed": 10.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 20 ), ExtResource( 18 ), ExtResource( 19 ) ],
-"loop": true,
-"name": "attack_down",
-"speed": 12.0
 } ]
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticlesMaterial" id=2]
 emission_shape = 2
 emission_box_extents = Vector3( 1, 1, 1 )
 flag_disable_z = true
@@ -65,14 +65,13 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 color = Color( 1, 0.576471, 0.368627, 1 )
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="CircleShape2D" id=3]
 radius = 4.0
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 5, 9 )
 
-[sub_resource type="Animation" id=4]
-resource_name = "attack"
+[sub_resource type="Animation" id=5]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics/AnimatedSprite:playing")
@@ -111,8 +110,7 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "attack_down"
+[sub_resource type="Animation" id=6]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Graphics/AnimatedSprite:animation")
@@ -139,8 +137,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "attack_up"
+[sub_resource type="Animation" id=7]
 length = 0.1
 loop = true
 tracks/0/type = "value"
@@ -156,12 +153,12 @@ tracks/0/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=8]
 
-[sub_resource type="RectangleShape2D" id=11]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 10, 8 )
 
-[sub_resource type="RectangleShape2D" id=12]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 10, 7 )
 
 [node name="SkeletonEnemy" type="KinematicBody2D"]
@@ -179,41 +176,43 @@ frame = 4
 position = Vector2( -5, 17 )
 amount = 12
 lifetime = 0.3
-process_material = SubResource( 9 )
+process_material = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -1, 6 )
-shape = SubResource( 7 )
+shape = SubResource( 3 )
 
 [node name="DamagedTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( -1, 1 )
-shape = SubResource( 8 )
+shape = SubResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/attack = SubResource( 4 )
-anims/attack_down = SubResource( 5 )
-anims/attack_up = SubResource( 6 )
+anims/attack = SubResource( 5 )
+anims/attack_down = SubResource( 6 )
+anims/attack_up = SubResource( 7 )
 
 [node name="attack_normal_hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_normal_hitbox"]
 position = Vector2( 14, 0 )
-shape = SubResource( 10 )
+shape = SubResource( 8 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="attack_normal_hitbox"]
 position = Vector2( 1, -13 )
-shape = SubResource( 11 )
+shape = SubResource( 9 )
 
 [node name="attack_downward_hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attack_downward_hitbox"]
 position = Vector2( 0, 6 )
-shape = SubResource( 12 )
+shape = SubResource( 10 )
 
+[connection signal="timeout" from="DamagedTimer" to="." method="_on_DamagedTimer_timeout"]
 [connection signal="area_entered" from="attack_normal_hitbox" to="." method="_on_attack_normal_hitbox_area_entered"]
 [connection signal="area_exited" from="attack_normal_hitbox" to="." method="_on_attack_normal_hitbox_area_exited"]
 [connection signal="area_entered" from="attack_downward_hitbox" to="." method="_on_attack_downward_hitbox_area_entered"]

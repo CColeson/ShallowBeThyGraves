@@ -49,7 +49,7 @@ func _on_spawner_enemy_spawned(spawner):
 	if enemies_to_spawn > 0:
 		var tim = rng.randi_range(1, 2 * log(5 * current_round) + 15)
 		spawner.set_spawn_interval(tim)
-		enemies_to_spawn -= 1
+	enemies_to_spawn -= 1
 
 func _on_AutomaticSpawnTimer_timeout():
 	if enemies_on_map <= 0 and enemies_to_spawn > 0:

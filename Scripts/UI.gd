@@ -17,16 +17,24 @@ onready var lStamina = $Control/VBoxContainer/LabelStamina
 onready var lRound = $Control/TopLeftUI/VBoxContainer/HBoxContainer/RoundContainer/RoundLabel
 export var debug_show = true
 
+onready var altselect_mod = Color("#565656")
+onready var manapotlabel = $Control/ItemSelector/HBoxContainer/TextureRect2/ManaQuant/Label
+onready var healthpotlabel = $Control/ItemSelector/HBoxContainer/TextureRect/HPQuant/Label
+
 func _ready():
 	action_menu_animator.play("hide_action_menu")
 	if !debug_show:
 		$Control.hide()
+	
 
 func _process(_delta):
 	lHP.text = "HP: " + str(player.health)
 	lStamina.text = "Stamina: " + str(player.stamina)
 	lRound.text = str(round_manager.current_round)
 	blood_label.text = str(player.blood_fragments)
+	manapotlabel.text = str(player.mana_potions)
+	healthpotlabel.text = str(player.health_potions)
+	
 
 func _on_Player_change_spell():
 	if spell_state_timer.time_left <= 0:
@@ -74,8 +82,9 @@ func _on_Door_cant_afford_door():
 func _on_RoundManager_round_start():
 	$Control/RoundAnnouncer.text = "Round " + str(round_manager.current_round)
 	$Control/RoundAnnounceAnimationPlayer.play("round_announce")
-
+	$Control/ItemSelector/HBoxContainer/TextureRect3.modulate = altselect_mod
 
 func _on_RoundManager_postround_start():
 	$Control/RoundAnnouncer.text = "Round Complete!"
 	$Control/RoundAnnounceAnimationPlayer.play("round_announce")
+	$Control/ItemSelector/HBoxContainer/TextureRect3.modulate = Color("#ffffff")

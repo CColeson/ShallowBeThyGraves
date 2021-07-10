@@ -34,9 +34,10 @@ func _on_EnemySpawnsManager_zero_enemy_spawns():
 
 
 func _on_BetweenRoundTimer_timeout():
-	current_round += 1
-	game_state = game_states.ROUND
-	emit_signal("round_start")
+	if game_state != game_states.ROUND:
+		current_round += 1
+		game_state = game_states.ROUND
+		emit_signal("round_start")
 
 
 func _on_Preround_Area_body_entered(_body):

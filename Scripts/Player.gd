@@ -37,6 +37,9 @@ var stamina_regen_rate = 30#TODO regen that shit somehow
 var velocity := Vector2()
 var blood_fragments = 0
 
+var mana_potions = 0
+var health_potions = 0
+
 func _ready():
 	animator.active = true
 	$Graphics/SpellCaster.hide()

@@ -14,6 +14,8 @@ const DAMAGE_SPEED = 350
 const DAMAGE_DISTANCE = 25 #Distance to travel after being damaged
 var damaged_position = null # our position before taking damage
 var experience_points = preload("res://Scenes/ExperiencePoint.tscn")
+var health_potion_drop = preload("res://Scenes/HealthPotion.tscn")
+var mana_potion_drop = preload("res://Scenes/ManaPotion.tscn")
 var rng = RandomNumberGenerator.new()
 var facing_right = true
 var player_in_attack = true
@@ -42,6 +44,7 @@ func _ready():
 	connect("player_hit", player, "_on_Enemy_player_hit")
 	HP = int((0.3 * pow(round_manager.current_round, 2)) + 150) #gonna have to toy with this
 	path = nav.get_simple_path(position, player.position)
+	rng.randomize()
 
 func _physics_process(delta):
 	match state:
@@ -51,6 +54,7 @@ func _physics_process(delta):
 		States.CHARGE : state_charge()
 
 func state_default():
+	var velocity = Vector2()
 	path = nav.get_simple_path(position, player.position)
 	path.remove(0) # path[0] is always the starting position for new paths
 	if path.size() > 0:
@@ -60,10 +64,15 @@ func state_default():
 		if (distance_to_point <= 0):
 			path.remove(0)
 			path = nav.get_simple_path(global_position, player.global_position)
-		var velocity = move_and_slide(direction_to_point * current_speed)
-		if velocity.length() > 0:
+		velocity = move_and_slide(direction_to_point * current_speed)
+		
+	else:
+		print("enemy out of nav")
+		#if we're out of the nav
+		var direction_to_player = global_position.direction_to(player.global_position)
+		velocity = move_and_slide(direction_to_player * current_speed)
+	if velocity.length() > 0:
 			play_animation("run")
-	
 	var distance_to_player = position.distance_to(player.position)
 #	var dir_to_player = position.direction_to(player.position)
 #	if distance_to_player <= charge_range:
@@ -116,8 +125,17 @@ func take_damage(attacker):
 		attacker_position = attacker.position
 		damaged_position = position
 		state = States.DAMAGED
-		$DamagedTimer.start()
+		$DamagedTimer.start(1)
 		if HP <= 0:
+			var drop
+			if rng.randi_range(0, 25) == 12:
+				match rng.randi_range(0,1):
+					0:
+						drop = health_potion_drop.instance()
+					1:
+						drop = mana_potion_drop.instance()
+				drop.global_position = global_position
+				get_tree().get_root().add_child(drop)
 			for _i in range(rng.randi_range(10,15)):
 				var ex = experience_points.instance()
 				ex.global_position = global_position
@@ -179,3 +197,8 @@ func _on_attack_downward_hitbox_area_exited(area):
 	var parent = area.get_parent()
 	if parent.has_method("get_class") and parent.get_class() == "Player":
 		player_in_attack = false
+
+
+func _on_DamagedTimer_timeout():
+	if state == States.DAMAGED:
+		state = States.DEFAULT

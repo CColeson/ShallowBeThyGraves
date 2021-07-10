@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Assets/Tilesets/0x72_DungeonTilesetII_v1.4.png" type="Texture" id=1]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6, 5 )
+[sub_resource type="CircleShape2D" id=1]
+radius = 6.0
 
 [node name="Pillar" type="StaticBody2D"]
 
